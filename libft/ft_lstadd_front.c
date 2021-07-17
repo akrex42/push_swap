@@ -23,7 +23,7 @@ t_list	*ft_lstadd_front(t_list **head, t_list **tail)
 	lstnew->next = *head;
 	if (*head)
 	{
-		(*head)->next = lstnew;
+		(*head)->prev = lstnew;
 	}
 	else if (*tail == NULL)
 	{

@@ -27,7 +27,7 @@ typedef struct s_list
 
 
 
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)
+t_list				*ft_lstmap(t_list *lst, void *(*f)(int), void (*del)
 						(int));
 void				ft_lstclear(t_list **lst, void (*del)(int));
 void				ft_lstiter(t_list *lst, void (*f)(int));

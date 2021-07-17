@@ -2,8 +2,9 @@
 
 void 	push_b(t_list **head_a, t_list **head_b, t_list **tail_a, t_list **tail_b)
 {
-	t_list *tmp = NULL;
+	t_list *tmp;
 
+	tmp = NULL;
 	if (*tail_a)
 	{
 		tmp = *tail_a;
@@ -15,13 +16,16 @@ void 	push_b(t_list **head_a, t_list **head_b, t_list **tail_a, t_list **tail_b)
 		else
 			*head_a = NULL;
 		free(tmp);
+		write(1, "pb", 2);
+		write(1, "\n", 1);
 	}
 }
 
 void 	push_a(t_list **head_a, t_list **head_b, t_list **tail_a, t_list **tail_b)
 {
-	t_list *tmp = NULL;
+	t_list *tmp;
 
+	tmp = NULL;
 	if (*tail_b)
 	{
 		tmp = *tail_b;
@@ -33,6 +37,8 @@ void 	push_a(t_list **head_a, t_list **head_b, t_list **tail_a, t_list **tail_b)
 		else
 			*head_b = NULL;
 		free(tmp);
+		write(1, "pa", 2);
+		write(1, "\n", 1);
 	}
 }
 
@@ -45,6 +51,8 @@ void	swap_a(t_list **tail_a)
 		tmp = (*tail_a)->prev->content;
 		(*tail_a)->prev->content = (*tail_a)->content;
 		(*tail_a)->content = tmp;
+		write(1, "sa", 2);
+		write(1, "\n", 1);
 	}
 }
 
@@ -57,6 +65,8 @@ void	swap_b(t_list **tail_b)
 		tmp = (*tail_b)->prev->content;
 		(*tail_b)->prev->content = (*tail_b)->content;
 		(*tail_b)->content = tmp;
+		write(1, "sb", 2);
+		write(1, "\n", 1);
 	}
 }
 
@@ -72,20 +82,7 @@ void	swap_ab(t_list **tail_a, t_list **tail_b)
 		tmp = (*tail_a)->prev->content;
 		(*tail_a)->prev->content = (*tail_a)->content;
 		(*tail_a)->content = tmp;
-	}
-}
-
-void	rotate_b(t_list **head_b, t_list **tail_b)
-{
-	t_list *tmp1 = NULL;
-
-	if (*tail_b)
-	{
-		tmp1 = *tail_b;
-		*head_b = ft_lstadd_front(head_b, tail_b);
-		*tail_b = (*tail_b)->prev;
-		if (*tail_b)
-			(*tail_b)->next = NULL;
-		free(tmp1);
+		write(1, "ss", 2);
+		write(1, "\n", 1);
 	}
 }
