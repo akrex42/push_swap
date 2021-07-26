@@ -6,7 +6,7 @@ int		main(int argc, char **argv)
 	t_list		*a = NULL;
 	t_list 		*tail_a = NULL;
 	t_list		*head_b = NULL;
-//	t_list 		*tail_b = NULL;
+	t_list 		*tail_b = NULL;
 	t_list 		*b = NULL;
 	t_tools		t;
 
@@ -38,13 +38,18 @@ int		main(int argc, char **argv)
 
 //	push_b(&head_a, &head_b, &tail_a, &tail_b);
 //	push_b(&head_a, &head_b, &tail_a, &tail_b);
+//	push_b(&head_a, &head_b, &tail_a, &tail_b);
+//	push_b(&head_a, &head_b, &tail_a, &tail_b);
+//	push_b(&head_a, &head_b, &tail_a, &tail_b);
+//	push_b(&head_a, &head_b, &tail_a, &tail_b);
 //	sort_stack_two_elems(&a, &head_a, &tail_a);
-	sort_stack_three_elems(&a, &head_a, &tail_a);
+//	sort_stack_three_elems(&a, &head_a, &tail_a);
 
 	// print stacks
-
+	sort_all(&a, &head_a, &tail_b, &head_b, &tail_a);
 	print_stack_a(a, head_a);
 	print_stack_b(b, head_b);
+//	find_median(a, head_a);
 
 	// TODO circular list
 	// TODO free
