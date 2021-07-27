@@ -146,8 +146,8 @@ void sort_all(t_tools *t)
 			break ;
 		}
 	}
-//	print_stack_a(t);
-//	print_stack_b(t);
+	print_stack_a(t);
+	print_stack_b(t);
 	while (1)
 	{
 		median = find_median_b(t);

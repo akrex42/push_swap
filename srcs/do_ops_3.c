@@ -23,10 +23,8 @@ void	rotate_b(t_tools *t)
 	}
 }
 
-void 	init_struct_tools(t_tools *t, int argc)
+void 	init_struct_tools(t_tools *t)
 {
-	t->tab_sorted = malloc(sizeof(t->tab_sorted) * (argc - 2));
-	t->tab_original = malloc(sizeof(t->tab_sorted) * (argc - 2));
 	t->head_a = NULL;
 	t->a = NULL;
 	t->tail_a = NULL;
@@ -35,31 +33,41 @@ void 	init_struct_tools(t_tools *t, int argc)
 	t->b = NULL;
 }
 
-void 	create_two_tabs(t_tools *t, char **argv, int argc)
+void 	create_two_tabs(t_tools *t, char **argv)
 {
 	int	i;
 	int j;
+	char **splitted;
 
 	j = 0;
-	i = argc - 1;
-	while (i > 0)
+	i = 0;
+	splitted = ft_split(argv[1], ' ');
+	while (splitted[i] != NULL)
 	{
-		t->tab_sorted[j] = ft_atoi(argv[i]);
+		i++;
+	}
+	t->size = i - 1;
+	t->tab_sorted = malloc(sizeof(t->tab_sorted) * (i));
+	t->tab_original = malloc(sizeof(t->tab_sorted) * (i));
+	i--;
+	while (i >= 0)
+	{
+		t->tab_sorted[j] = ft_atoi(splitted[i]);
+//		ft_putnbr_fd(t->tab_sorted[j], 1);
 		i--;
 		j++;
 	}
-
-	i = argc - 1;
+	i = t->size;
 	j = 0;
-	while (i > 0)
+	while (i >= 0)
 	{
-		t->tab_original[j] = ft_atoi(argv[i]);
+		t->tab_original[j] = ft_atoi(splitted[i]);
 		i--;
 		j++;
 	}
 }
 
-void 	sort_tab(t_tools *t, int argc)
+void 	sort_tab(t_tools *t)
 {
 	int j;
 	int i;
@@ -69,12 +77,12 @@ void 	sort_tab(t_tools *t, int argc)
 
 	j = 0;
 
-	while (j < argc - 1)
+	while (j <= t->size)
 	{
 		i = j;
 		min = t->tab_sorted[j];
 		index = j;
-		while (i < argc - 1)
+		while (i <= t->size)
 		{
 			if (t->tab_sorted[i] < min)
 			{
@@ -90,17 +98,17 @@ void 	sort_tab(t_tools *t, int argc)
 	}
 }
 
-void 	add_indexes_to_list(t_tools *t, int argc)
+void 	add_indexes_to_list(t_tools *t)
 {
 	int i;
 	int j;
 
 	i = 0;
 
-	while (i < argc - 1)
+	while (i <= t->size)
 	{
 		j = 0;
-		while (j < argc - 1)
+		while (j <= t->size)
 		{
 			if (t->tab_original[i] == t->tab_sorted[j])
 			{

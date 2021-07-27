@@ -1,11 +1,11 @@
 #include "../includes/push_swap.h"
 
-void 	print_tab_sorted(t_tools *t, int argc)
+void 	print_tab_sorted(t_tools *t)
 {
 	int i;
 
 	i = 0;
-	while (i < argc - 1)
+	while (i < t->size)
 	{
 		ft_putnbr_fd(t->tab_sorted[i], 1);
 		ft_putchar_fd(' ', 1);
@@ -14,12 +14,12 @@ void 	print_tab_sorted(t_tools *t, int argc)
 	ft_putchar_fd('\n', 1);
 }
 
-void 	print_tab_not_sorted(t_tools *t, int argc)
+void 	print_tab_not_sorted(t_tools *t)
 {
 	int i;
 
 	i = 0;
-	while (i < argc - 1)
+	while (i < t->size)
 	{
 		ft_putnbr_fd(t->tab_original[i], 1);
 		ft_putchar_fd(' ', 1);
