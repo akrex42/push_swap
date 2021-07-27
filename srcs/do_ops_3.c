@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void	rotate_b(t_list **head_b, t_list **tail_b)
+void	rotate_b(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *lst;
@@ -8,15 +8,15 @@ void	rotate_b(t_list **head_b, t_list **tail_b)
 	tmp1 = NULL;
 	lst = NULL;
 
-	if (*tail_b)
+	if (t->tail_b)
 	{
-		tmp1 = *tail_b;
-		lst = ft_lstadd_front(head_b, tail_b);
-		lst->content = (*tail_b)->content;
-		*head_b = lst;
-		*tail_b = (*tail_b)->prev;
-		if (*tail_b)
-			(*tail_b)->next = NULL;
+		tmp1 = t->tail_b;
+		lst = ft_lstadd_front(&(t->head_b), &(t->tail_b));
+		lst->content = (t->tail_b)->content;
+		t->head_b = lst;
+		t->tail_b = (t->tail_b)->prev;
+		if (t->tail_b)
+			(t->tail_b)->next = NULL;
 		free(tmp1);
 		write(1, "rb", 2);
 		write(1, "\n", 1);
@@ -27,6 +27,12 @@ void 	init_struct_tools(t_tools *t, int argc)
 {
 	t->tab_sorted = malloc(sizeof(t->tab_sorted) * (argc - 2));
 	t->tab_original = malloc(sizeof(t->tab_sorted) * (argc - 2));
+	t->head_a = NULL;
+	t->a = NULL;
+	t->tail_a = NULL;
+	t->head_b = NULL;
+	t->tail_b = NULL;
+	t->b = NULL;
 }
 
 void 	create_two_tabs(t_tools *t, char **argv, int argc)
@@ -84,7 +90,7 @@ void 	sort_tab(t_tools *t, int argc)
 	}
 }
 
-void 	add_indexes_to_list(t_tools *t, t_list **head_a, t_list **a, t_list **tail_a, int argc)
+void 	add_indexes_to_list(t_tools *t, int argc)
 {
 	int i;
 	int j;
@@ -98,8 +104,8 @@ void 	add_indexes_to_list(t_tools *t, t_list **head_a, t_list **a, t_list **tail
 		{
 			if (t->tab_original[i] == t->tab_sorted[j])
 			{
-				*a = ft_lstadd_back(head_a, tail_a);
-				(*a)->content = j;
+				t->a = ft_lstadd_back(&(t->head_a), &(t->tail_a));
+				t->a->content = j;
 			}
 			j++;
 		}

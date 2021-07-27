@@ -28,28 +28,28 @@ void 	print_tab_not_sorted(t_tools *t, int argc)
 	ft_putchar_fd('\n', 1);
 }
 
-void 	print_stack_a(t_list *a, t_list *head_a)
+void 	print_stack_a(t_tools *t)
 {
-	a = head_a;
+	t->a = t->head_a;
 
-	while (a)
+	while (t->a)
 	{
-		ft_putnbr_fd(a->content, 1);
+		ft_putnbr_fd(t->a->content, 1);
 		ft_putchar_fd(' ', 1);
-		a = a->next;
+		t->a = t->a->next;
 	}
 	ft_putchar_fd('\n', 1);
 }
 
-void 	print_stack_b(t_list *b, t_list *head_b)
+void 	print_stack_b(t_tools *t)
 {
-	b = head_b;
+	t->b = t->head_b;
 
-	while (b)
+	while (t->b)
 	{
-		ft_putnbr_fd(b->content, 1);
+		ft_putnbr_fd(t->b->content, 1);
 		ft_putchar_fd(' ', 1);
-		b = b->next;
+		t->b = t->b->next;
 	}
 	ft_putchar_fd('\n', 1);
 }

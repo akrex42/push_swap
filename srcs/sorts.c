@@ -1,119 +1,190 @@
 #include "../includes/push_swap.h"
 
-void 	sort_stack_two_elems(t_list **tail_a)
+int 	sort_stack_two_elems(t_tools *t)
 {
-	if ((*tail_a)->content > (*tail_a)->prev->content)
-		swap_a(tail_a);
+	if (t->tail_a->prev && t->tail_a->content > t->tail_a->prev->content)
+		swap_a(t);
+	else
+		return (1);
+	return (0);
 }
 
-void 	sort_stack_three_elems(t_list **a, t_list **head_a, t_list **tail_a)
+void 	sort_stack_three_elems(t_tools *t)
 {
-	a = head_a;
+	t->a = t->head_a;
 
-	sort_stack_two_elems(tail_a);
-	if ((*a)->content < (*a)->next->next->content)
+	if (sort_stack_two_elems(t) == 1)
+	{}
+	else if (t->a->content < t->a->next->next->content)
 	{
-		reverse_rotate_a(head_a, tail_a);
-//		print_stack_a(*a, *head_a);
-		sort_stack_two_elems(tail_a);
+		reverse_rotate_a(t);
+//		print_stack_a(t->a, t->head_a);
+		sort_stack_two_elems(t);
 	}
-	else if ((*a)->content > (*a)->next->next->content && (*a)->content < (*a)->next->content)
+	else if (t->a->content > t->a->next->next->content && t->a->content < t->a->next->content)
 	{
-		rotate_a(head_a, tail_a);
-//		print_stack_a(*a, *head_a);
-		sort_stack_two_elems(tail_a);
-//		print_stack_a(*a, *head_a);
-		reverse_rotate_a(head_a, tail_a);
+		rotate_a(t);
+//		print_stack_a(t->a, t->head_a);
+		sort_stack_two_elems(t);
+//		print_stack_a(t->a, t->head_a);
+		reverse_rotate_a(t);
 	}
 }
 
-int	find_median(t_list *a, t_list *head_a)
+int 	sort_stack_two_elems_b(t_tools *t)
+{
+	if (t->tail_b->prev && t->tail_b->content < t->tail_b->prev->content)
+		swap_b(t);
+	else
+		return (1);
+	return (0);
+}
+
+void 	sort_stack_three_elems_b(t_tools *t)
+{
+	t->b = t->head_b;
+
+	if (sort_stack_two_elems_b(t) == 1)
+	{}
+	else if (t->b->content > t->b->next->next->content)
+	{
+		reverse_rotate_b(t);
+//		print_stack_a(t->a, t->head_a);
+		sort_stack_two_elems_b(t);
+	}
+	else if (t->b->content < t->b->next->next->content && t->b->content > t->b->next->content)
+	{
+		rotate_b(t);
+//		print_stack_a(t->a, t->head_a);
+		sort_stack_two_elems_b(t);
+//		print_stack_a(t->a, t->head_a);
+		reverse_rotate_b(t);
+	}
+}
+
+int	find_median_a(t_tools *t)
 {
 	int	max;
 	int	min;
 	int	i;
 	int median;
 	int len;
-//	int flag_median;
-//	int index;
 
 	i = 0;
-	a = head_a;
-	max = a->content;
-//	flag_median = 0;
-	len = ft_lstsize(a);
-	while (i < len && a)
+	t->a = t->head_a;
+	max = t->a->content;
+	min = t->a->content;
+	len = ft_lstsize(t->a);
+	while (i < len && t->a)
 	{
-		if (max < a->content)
-			max = a->content;
-		a = a->next;
+		if (max < t->a->content)
+			max = t->a->content;
+		if (min > t->a->content)
+			min = t->a->content;
+		t->a = t->a->next;
 		i++;
 	}
-//	ft_putnbr_fd(max, 1);
-//	ft_putchar_fd('\n', 1);
-	a = head_a;
-	min = a->content;
-	i = 0;
-	while (i < len && a)
-	{
-		if (min > a->content)
-			min = a->content;
-		a = a->next;
-		i++;
-	}
-//	ft_putnbr_fd(min, 1);
-//	ft_putchar_fd('\n', 1);
-//	a = head_a;
-	median = (max - min) / 2;
-//	ft_putnbr_fd(median, 1);
-//	ft_putchar_fd('\n', 1);
-//	i = 0;
-//	while (i < len && a)
-//	{
-//		if (a->content == median)
-//		{
-//			flag_median = 1;
-//			break ;
-//		}
-//		a = a->next;
-//		i++;
-//	}
-//	if (!flag_median)
-//	{
-//		i = 0;
-//		a = head_a;
-//		index = a->content;
-//		while (i < len && a)
-//		{
-//			if (abs(median - index) > abs(median - a->content))
-//				index = a->content;
-//			a = a->next;
-//			i++;
-//		}
-//		median = index;
-//	}
-//printf("%d", median);
+	median = (max + min) / 2;
 	return (median);
 }
 
-void sort_all(t_list **a, t_list **head_a, t_list **tail_b, t_list **head_b, t_list **tail_a)
+int	find_median_b(t_tools *t)
 {
-	int median = find_median(*a, *head_a);
+	int	max;
+	int	min;
+	int	i;
+	int median;
+	int len;
+
+	i = 0;
+	t->b = t->head_b;
+	max = t->b->content;
+	min = t->b->content;
+	len = ft_lstsize(t->b);
+	while (i < len && t->b)
+	{
+		if (max < t->b->content)
+			max = t->b->content;
+		if (min > t->b->content)
+			min = t->b->content;
+		t->b = t->b->next;
+		i++;
+	}
+	median = (max + min) / 2;
+	return (median);
+}
+
+void sort_all(t_tools *t)
+{
+	int median;
 	int len;
 	int i;
 
-	a = head_a;
-	i = 0;
-	len = ft_lstsize(*a);
-	a = tail_a;
-	while (i < len && *a)
+	while (1)
 	{
-		if (median <= (*a)->content)
-			push_b(head_a, head_b, tail_a, tail_b);
-		else if (median > (*a)->content)
-			rotate_a(head_a, tail_a);
-		print_stack_a(*a, *head_a);
-		*a = (*a)->prev;
-		i++;
+		median = find_median_a(t);
+		t->a = t->head_a;
+		i = 0;
+		len = ft_lstsize(t->a);
+		t->a = t->tail_a;
+		while (i < len && t->a)
+		{
+			t->a = t->tail_a;
+			if (median >= (t->a)->content)
+				push_b(t);
+//			else if (median > (t->head_a)->content)
+//				reverse_rotate_a(t);
+			else if (median < (t->a)->content)
+				rotate_a(t);
+			t->a = (t->a)->prev;
+			i++;
+		}
+		t->a = t->head_a;
+		if (ft_lstsize(t->a) <= 3)
+		{
+			sort_stack_three_elems(t);
+			break ;
+		}
 	}
+//	print_stack_a(t);
+//	print_stack_b(t);
+	while (1)
+	{
+		median = find_median_b(t);
+		t->b = t->head_b;
+		i = 0;
+		len = ft_lstsize(t->b);
+		t->b = t->tail_b;
+		while (i < len && t->b)
+		{
+			t->b = t->tail_b;
+			if (median <= (t->b)->content)
+				push_a(t);
+//			else if (median > (t->head_b)->content)
+//				reverse_rotate_b(t);
+			else if (median > (t->b)->content)
+				rotate_b(t);
+			t->b = (t->b)->prev;
+			i++;
+		}
+		t->b = t->head_b;
+//		ft_putnbr_fd((t->b)->content, 1);
+		if (ft_lstsize(t->b) <= 3)
+		{
+//			ft_putnbr_fd((t->b)->content, 1);
+			sort_stack_three_elems_b(t);
+//			ft_putnbr_fd((t->b)->content, 1);
+			t->b = t->head_b;
+			while (1)
+			{
+				if (t->head_b)
+					push_a(t);
+				else
+					break ;
+			}
+			break ;
+		}
+
+	}
+
 }

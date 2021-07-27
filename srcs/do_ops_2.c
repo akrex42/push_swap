@@ -1,28 +1,28 @@
 #include "../includes/push_swap.h"
 
-void	rotate_a(t_list **head_a, t_list **tail_a)
+void	rotate_a(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *lst;
 
 	tmp1 = NULL;
 	lst = NULL;
-	if (*tail_a)
+	if (t->tail_a)
 	{
-		tmp1 = *tail_a;
-		lst = ft_lstadd_front(head_a, tail_a);
-		lst->content = (*tail_a)->content;
-		*head_a = lst;
-		*tail_a = (*tail_a)->prev;
-		if (*tail_a)
-			(*tail_a)->next = NULL;
+		tmp1 = t->tail_a;
+		lst = ft_lstadd_front(&(t->head_a), &(t->tail_a));
+		lst->content = t->tail_a->content;
+		t->head_a = lst;
+		t->tail_a = t->tail_a->prev;
+		if (t->tail_a)
+			t->tail_a->next = NULL;
 		free(tmp1);
 		write(1, "ra", 2);
 		write(1, "\n", 1);
 	}
 }
 
-void	rotate_ab(t_list **head_a, t_list **tail_a, t_list **head_b, t_list **tail_b)
+void	rotate_ab(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *tmp;
@@ -32,30 +32,30 @@ void	rotate_ab(t_list **head_a, t_list **tail_a, t_list **head_b, t_list **tail_
 	tmp = NULL;
 	lst = NULL;
 
-	if (*tail_a && *tail_b)
+	if (t->tail_a && t->tail_b)
 	{
-		tmp = *tail_a;
-		lst = ft_lstadd_front(head_a, tail_a);
-		lst->content = (*tail_a)->content;
-		*head_a = lst;
-		*tail_a = (*tail_a)->prev;
-		if (*tail_a)
-			(*tail_a)->next = NULL;
+		tmp = t->tail_a;
+		lst = ft_lstadd_front(&(t->head_a), &(t->tail_a));
+		lst->content = t->tail_a->content;
+		t->head_a = lst;
+		t->tail_a = (t->tail_a)->prev;
+		if (t->tail_a)
+			(t->tail_a)->next = NULL;
 		free(tmp);
-		tmp1 = *tail_b;
-		lst = ft_lstadd_front(head_b, tail_b);
-		lst->content = (*tail_b)->content;
-		*head_b = lst;
-		*tail_b = (*tail_b)->prev;
-		if (*tail_b)
-			(*tail_b)->next = NULL;
+		tmp1 = t->tail_b;
+		lst = ft_lstadd_front(&(t->head_b),&(t->tail_b));
+		lst->content = (t->tail_b)->content;
+		t->head_b = lst;
+		t->tail_b = (t->tail_b)->prev;
+		if (t->tail_b)
+			(t->tail_b)->next = NULL;
 		free(tmp1);
 		write(1, "rr", 2);
 		write(1, "\n", 1);
 	}
 }
 
-void	reverse_rotate_a(t_list **head_a, t_list **tail_a)
+void	reverse_rotate_a(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *lst;
@@ -63,44 +63,44 @@ void	reverse_rotate_a(t_list **head_a, t_list **tail_a)
 	tmp1 = NULL;
 	lst = NULL;
 
-	if (*tail_a)
+	if (t->tail_a)
 	{
-		tmp1 = *head_a;
-		lst = ft_lstadd_back(head_a, tail_a);
-		lst->content = (*head_a)->content;
-		*tail_a = lst;
-		*head_a = (*head_a)->next;
-		if (*head_a)
-			(*head_a)->prev = NULL;
+		tmp1 = t->head_a;
+		lst = ft_lstadd_back(&(t->head_a), &(t->tail_a));
+		lst->content = (t->head_a)->content;
+		t->tail_a = lst;
+		t->head_a = (t->head_a)->next;
+		if (t->head_a)
+			(t->head_a)->prev = NULL;
 		free(tmp1);
 		write(1, "rra", 3);
 		write(1, "\n", 1);
 	}
 }
 
-void	reverse_rotate_b(t_list **head_b, t_list **tail_b)
+void	reverse_rotate_b(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *lst;
 
 	tmp1 = NULL;
 	lst = NULL;
-	if (*tail_b)
+	if (t->tail_b)
 	{
-		tmp1 = *head_b;
-		lst = ft_lstadd_back(head_b, tail_b);
-		lst->content = (*head_b)->content;
-		*tail_b = lst;
-		*head_b = (*head_b)->next;
-		if (*head_b)
-			(*head_b)->prev = NULL;
+		tmp1 = t->head_b;
+		lst = ft_lstadd_back(&(t->head_b),&(t->tail_b));
+		lst->content = (t->head_b)->content;
+		t->tail_b = lst;
+		t->head_b = (t->head_b)->next;
+		if (t->head_b)
+			(t->head_b)->prev = NULL;
 		free(tmp1);
 		write(1, "rrb", 3);
 		write(1, "\n", 1);
 	}
 }
 
-void	reverse_rotate_ab(t_list **head_a, t_list **tail_a, t_list **head_b, t_list **tail_b)
+void	reverse_rotate_ab(t_tools *t)
 {
 	t_list *tmp1;
 	t_list *tmp;
@@ -110,23 +110,23 @@ void	reverse_rotate_ab(t_list **head_a, t_list **tail_a, t_list **head_b, t_list
 	tmp = NULL;
 	lst = NULL;
 
-	if (*tail_b && *tail_a)
+	if (t->tail_b && t->tail_a)
 	{
-		tmp = *head_a;
-		lst = ft_lstadd_back(head_a, tail_a);
-		lst->content = (*head_a)->content;
-		*tail_a = lst;
-		*head_a = (*head_a)->next;
-		if (*head_a)
-			(*head_a)->prev = NULL;
+		tmp = t->head_a;
+		lst = ft_lstadd_back(&(t->head_a), &(t->tail_a));
+		lst->content = (t->head_a)->content;
+		t->tail_a = lst;
+		t->head_a = (t->head_a)->next;
+		if (t->head_a)
+			(t->head_a)->prev = NULL;
 		free(tmp);
-		tmp1 = *head_b;
-		lst = ft_lstadd_back(head_b, tail_b);
-		lst->content = (*head_b)->content;
-		*tail_b = lst;
-		*head_b = (*head_b)->next;
-		if (*head_b)
-			(*head_b)->prev = NULL;
+		tmp1 = t->head_b;
+		lst = ft_lstadd_back(&(t->head_b),&(t->tail_b));
+		lst->content = (t->head_b)->content;
+		t->tail_b = lst;
+		t->head_b = (t->head_b)->next;
+		if (t->head_b)
+			(t->head_b)->prev = NULL;
 		free(tmp1);
 		write(1, "rrr", 3);
 		write(1, "\n", 1);
