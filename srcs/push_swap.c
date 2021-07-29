@@ -25,9 +25,9 @@ int		main(int argc, char **argv)
 	add_indexes_to_list(&t);
 //	ft_putchar_fd('h', 1);
 	// print before any op
-
-	print_stack_a(&t);
-	print_stack_b(&t);
+//
+//	print_stack_a(&t);
+//	print_stack_b(&t);
 
 	// perform ops
 
@@ -38,8 +38,8 @@ int		main(int argc, char **argv)
 
 	// print stacks
 	sort_all(&t);
-	print_stack_a(&t);
-	print_stack_b(&t);
+//	print_stack_a(&t);
+//	print_stack_b(&t);
 //	find_median(&t);
 
 	// TODO circular list

@@ -39,6 +39,7 @@ void 	print_stack_a(t_tools *t)
 		t->a = t->a->next;
 	}
 	ft_putchar_fd('\n', 1);
+	t->a = t->head_a;
 }
 
 void 	print_stack_b(t_tools *t)
@@ -52,4 +53,5 @@ void 	print_stack_b(t_tools *t)
 		t->b = t->b->next;
 	}
 	ft_putchar_fd('\n', 1);
+	t->b = t->head_b;
 }

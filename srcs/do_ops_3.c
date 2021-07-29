@@ -44,6 +44,7 @@ void 	create_two_tabs(t_tools *t, char **argv)
 	splitted = ft_split(argv[1], ' ');
 	while (splitted[i] != NULL)
 	{
+//		ft_putendl_fd(splitted[i]);
 		i++;
 	}
 	t->size = i - 1;
