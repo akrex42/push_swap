@@ -45,5 +45,6 @@ int		sort_stack_two_elems(t_tools *t);
 void 	sort_stack_three_elems(t_tools *t);
 int		find_median(t_tools *t);
 void	sort_all(t_tools *t);
+void 	sort_median_b_cycle(t_tools *t, int length);
 
 #endif
