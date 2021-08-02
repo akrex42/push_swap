@@ -216,11 +216,13 @@ int check_if_sorted_b(t_tools *t)
 	return (flag_cycle);
 }
 
-void sort_median_a(t_tools *t, int median)
+void sort_median_a(t_tools *t)
 {
+	int median;
 	int i = 0;
 	int len;
 
+	median = find_median_a(t);
 	t->a = t->head_a;
 	i = 0;
 	len = ft_lstsize(t->a);
@@ -243,13 +245,13 @@ void sort_median_a(t_tools *t, int median)
 	}
 }
 
-void sort_median_b(t_tools *t, int median)
+void sort_median_b(t_tools *t)
 {
-//	int median;
+	int median;
 	int i;
 	int len;
 
-//	median = find_median_b(t);
+	median = find_median_b(t);
 	t->b = t->head_b;
 	i = 0;
 	len = ft_lstsize(t->b);
@@ -433,259 +435,336 @@ void sort_median_a_cycle(t_tools *t)
 	}
 }
 
-//void sort_five(t_tools *t)
-//{
-//	if (check_if_sorted_a(t))
-//	{
-//		sort_median_a(t);
-//		//			print_stack_a(t);
-//		//			print_stack_b(t);
-//		if (check_if_sorted_a(t) || t->head_b != NULL)
-//		{
-//			sort_stack_three_elems(t);
-//			sort_stack_three_elems_b(t);
-//			t->b = t->head_b;
-//			while (1)
-//			{
-//				if (t->head_b)
-//					push_a(t);
-//				else
-//					break;
-//			}
-//			//				print_stack_a(t);
-//			//				print_stack_b(t);
-//		}
-//		else
-//			return ;
-//	}
-//	else
-//		return ;
-//}
-//
-//void sort_ten(t_tools *t)
-//{
-//	//		print_stack_a(t);
-//	//		print_stack_b(t);
-//
-//	sort_median_a_cycle(t);
-//	sort_median_b_cycle(t);
-//	//
-//	//		print_stack_a(t);
-//	//		print_stack_b(t);
-//	if (check_if_sorted_a(t))
-//	{
-//		sort_median_a(t);
-//		//	//			print_stack_a(t);
-//		//	//			print_stack_b(t);
-////		sort_five(t);
-//		print_stack_a(t);
-//		print_stack_b(t);
-//		if (check_if_sorted_a(t))
-//		{
-//			swap_and_rotate_till_dead_a(t);
-//			if (check_if_sorted_b(t))
-//				swap_and_rotate_till_dead_b(t);
-//			t->b = t->head_b;
-//			while (1)
-//			{
-//				if (t->head_b)
-//					push_a(t);
-//				else
-//					break;
-//			}
-//			print_stack_a(t);
-//			print_stack_b(t);
-//		}
-//		else
-//			return ;
-//	}
-//	else
-//		return ;
-//}
-//
+void sort_five(t_tools *t)
+{
+	if (check_if_sorted_a(t))
+	{
+		sort_median_a(t);
+		//			print_stack_a(t);
+		//			print_stack_b(t);
+		if (check_if_sorted_a(t) || t->head_b != NULL)
+		{
+			sort_stack_three_elems(t);
+			sort_stack_three_elems_b(t);
+			t->b = t->head_b;
+			while (1)
+			{
+				if (t->head_b)
+					push_a(t);
+				else
+					break;
+			}
+			//				print_stack_a(t);
+			//				print_stack_b(t);
+		}
+		else
+			return ;
+	}
+	else
+		return ;
+}
+
+void sort_ten(t_tools *t)
+{
+	//		print_stack_a(t);
+	//		print_stack_b(t);
+
+	sort_median_a_cycle(t);
+	sort_median_b_cycle(t);
+	//
+	//		print_stack_a(t);
+	//		print_stack_b(t);
+	if (check_if_sorted_a(t))
+	{
+		sort_median_a(t);
+		//	//			print_stack_a(t);
+		//	//			print_stack_b(t);
+//		sort_five(t);
+		print_stack_a(t);
+		print_stack_b(t);
+		if (check_if_sorted_a(t))
+		{
+			swap_and_rotate_till_dead_a(t);
+			if (check_if_sorted_b(t))
+				swap_and_rotate_till_dead_b(t);
+			t->b = t->head_b;
+			while (1)
+			{
+				if (t->head_b)
+					push_a(t);
+				else
+					break;
+			}
+			print_stack_a(t);
+			print_stack_b(t);
+		}
+		else
+			return ;
+	}
+	else
+		return ;
+}
+
 void sort_all(t_tools *t)
 {
 //	int flag_cycle = 0;
 
 //	print_stack_a(t);
 //	print_stack_b(t);
+	int len = 0;
+	int len1 = 0;
 
 	t->a = t->head_a;
-//	if (ft_lstsize(t->a) <= 3)
-//	{
-//		sort_stack_three_elems(t);
-//		return ;
-//	}
-//	else if (ft_lstsize(t->a) <= 5)
-//	{
-//		sort_five(t);
-//	}
-//	else if (ft_lstsize(t->a) <= 10)
-//	{
-//		sort_ten(t);
-//	}
-	if (ft_lstsize(t->a) <= 25)
+	if (ft_lstsize(t->a) <= 3)
+	{
+		sort_stack_three_elems(t);
+		return ;
+	}
+	else if (ft_lstsize(t->a) <= 5)
+	{
+		sort_five(t);
+	}
+	else if (ft_lstsize(t->a) <= 10)
+	{
+		sort_ten(t);
+	}
+	else if (ft_lstsize(t->a) <= 25)
 	{
 //		print_stack_a(t);
 //		print_stack_b(t);
-//		if (check_if_sorted_a(t))
-//		{
-////			sort_median_a(t);
-//			sort_median_a_cycle(t);
-//		}
-//		print_stack_a(t);
-//		print_stack_b(t);
-//		if (check_if_sorted_b(t))
-//		{
-////			sort_median_b(t);
-//			sort_median_b_cycle(t);
-//		}
-		print_stack_a(t);
-		print_stack_b(t);
-//		if (ft_lstsize(t->a) > 6)
-//		{
-//			sort_median_a(t);
-//		}
-//		int i = 0;
-//		while (i < 3)
-//		{
-//			push_b(t);
-//			i++;
-//		}
-//		if (check_if_sorted_a(t) && t->)
-//		{
-			int sum = find_median(t);
-			int median = (sum) / 2;
-			sort_median_a(t, median);
-			print_stack_a(t);
-			print_stack_b(t);
-			median = find_median_b(t);
-			sort_median_b(t, median);
-			print_stack_a(t);
-			print_stack_b(t);
-			median = find_median_b(t);
-			ft_putnbr_fd(median, 1);
-			sort_median_b(t, median);
-			print_stack_a(t);
-			print_stack_b(t);
-//			median = find_median_b(t);
-//			sort_median_b(t, median);
+		if (check_if_sorted_a(t))
+		{
+			sort_median_a_cycle(t);
+		}
+		while (t->tail_b)
+		{
+			if (t->tail_b->prev && t->tail_b->prev->prev && t->tail_b->prev->prev->prev)
+			{
+				if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+				{
+					if (t->tail_a->content - t->tail_b->content == 1)
+					{
+						push_a(t);
+					}
+					else
+						rotate_b(t);
+				}
+				else if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+				{
+					if (t->tail_a->content - t->tail_b->prev->prev->content == 1)
+					{
+						rotate_b(t);
+						rotate_b(t);
+						push_a(t);
+						reverse_rotate_b(t);
+						reverse_rotate_b(t);
+					}
+					else
+						rotate_b(t);
+				}
+				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+				{
+					swap_b(t);
+					if (t->tail_a->content - t->tail_b->content == 1)
+					{
+						push_a(t);
+					}
+					else
+					{
+						swap_b(t);
+						rotate_b(t);
+					}
+				}
+				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+				{
+					if (t->tail_b->prev->prev->content < t->tail_b->prev->content)
+					{
+						swap_b(t);
+						if (t->tail_a->content - t->tail_b->content == 1)
+							push_a(t);
+						else
+							rotate_b(t);
+					}
+					else if (t->tail_b->prev->prev->content > t->tail_b->prev->content)
+					{
+						swap_b(t);
+						rotate_b(t);
+						if (t->tail_a->content - t->tail_b->content == 1)
+							push_a(t);
+						else
+							rotate_b(t);
+					}
+				}
+			}
+			else if (check_if_sorted_b(t) == 0)
+			{
+				t->b = t->head_b;
+				while (1)
+				{
+					if (t->head_b)
+						push_a(t);
+					else
+						break;
+				}
+				return ;
+			}
+			else if (t->tail_b->prev && t->tail_b->prev->prev)
+			{
+				sort_stack_three_elems_b(t);
+				push_a(t);
+				push_a(t);
+				push_a(t);
+			}
+			else if (t->tail_b->prev)
+			{
+				sort_stack_two_elems_b(t);
+				push_a(t);
+				push_a(t);
+			}
 //			print_stack_a(t);
 //			print_stack_b(t);
-//			sort_median_b(t, median);
-//			print_stack_a(t);
-//			print_stack_b(t);
-
-//			sort_median_b(t, median);
-//		}
-//		if (check_if_sorted_a(t))
-//		{
-//			swap_and_rotate_till_dead_a(t);
-//		}
+		}
 //		print_stack_a(t);
 //		print_stack_b(t);
-//
-//		if (check_if_sorted_a(t))
-//		{
-//			sort_median_a(t);
-////		}
-//		if (check_if_sorted_b(t))
-//		{
-//			sort_median_b(t);
-//			sort_median_b(t);
-////			sort_median_b(t);
-////				sort_median_b_cycle(t);
-//		}
-//		if (ft_lstsize(t->head_b) < 6)
-//		{
-//			swap_and_rotate_till_dead_b(t);
-//		}
-		print_stack_a(t);
-		print_stack_b(t);
-
-//		if (check_if_sorted_a(t))
-//		{
-//			sort_median_a(t);
-//			//			sort_median_b_cycle(t);
-//		}
-//		print_stack_a(t);
-//		print_stack_b(t);
-//		sort_ten(t);
-
-//		if (check_if_sorted_b(t))
-//		{
-//			swap_and_rotate_till_dead_b(t);
-//		}
-//		if (check_if_sorted_a(t))
-//		{
-//			swap_and_rotate_till_dead_a(t);
-//		}
-
-//
-//		if (check_if_sorted_a(t))
-//		{
-//			sort_median_a(t);
-//			if (check_if_sorted_a(t))
-//			{
-//				if (check_if_sorted_b(t))
-//					sort_median_b(t);
-//				sort_median_a_cycle(t);
-//				swap_and_rotate_till_dead_b(t);
-////				swap_and_rotate_till_dead_b(t);
-//				t->b = t->head_b;
-//
-//			}
-//			else
-//				return ;
-//		}
-//		else
-//			return ;
 	}
-
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//	if (check_if_sorted_b(t))
-//		sort_median_b(t);
-//	else
-//		return ;
-
-
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//	sort_median_a(t);
-//
-//	sort_median_b(t);
-
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//	if (check_if_sorted_b(t))
-//		swap_and_rotate_till_dead_b(t);
-//	else
-//		return ;
-
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//	t->b = t->head_b;
-//	while (1)
-//	{
-//		if (t->head_b)
-//			push_a(t);
-//		else
-//			break;
+	else if (ft_lstsize(t->a) <= 50)
+	{
+		//		print_stack_a(t);
+		//		print_stack_b(t);
+		if (check_if_sorted_a(t))
+		{
+			sort_median_a_cycle(t);
+		}
+		if (check_if_sorted_b(t))
+		{
+			sort_median_b(t);
+		}
+		print_stack_a(t);
+		print_stack_b(t);
+		int i = 0;
+		len = ft_lstsize(t->head_b);
+		t->b = t->head_b;
+		int max = t->b->content;
+		while (i < len && t->b)
+		{
+			if (max < t->b->content)
+				max = t->b->content;
+			i++;
+			t->b = t->b->next;
+		}
+		ft_putnbr_fd(max, 1);
+		t->b = t->head_b;
+		while (t->b)
+		{
+			if (t->b->content == max)
+			{
+				len1 = ft_lstsize(t->b);
+				break ;
+			}
+			t->b = t->b->next;
+		}
+		while (len1)
+		{
+			rotate_b(t);
+			len1--;
+		}
+		push_a(t);
+//		while (t->tail_b)
+//		{
+//			if (t->tail_b->prev && t->tail_b->prev->prev && t->tail_b->prev->prev->prev)
+//			{
+//				if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+//				{
+//					if (t->tail_a->content - t->tail_b->content == 1)
+//					{
+//						push_a(t);
+//					}
+//					else
+//						rotate_b(t);
+//				}
+//				else if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+//				{
+//					if (t->tail_a->content - t->tail_b->prev->prev->content == 1)
+//					{
+//						rotate_b(t);
+//						rotate_b(t);
+//						push_a(t);
+//						reverse_rotate_b(t);
+//						reverse_rotate_b(t);
+//					}
+//					else
+//						rotate_b(t);
+//				}
+//				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+//				{
+//					swap_b(t);
+//					if (t->tail_a->content - t->tail_b->content == 1)
+//					{
+//						push_a(t);
+//					}
+//					else
+//					{
+//						swap_b(t);
+//						rotate_b(t);
+//					}
+//				}
+//				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+//				{
+//					if (t->tail_b->prev->prev->content < t->tail_b->prev->content)
+//					{
+//						swap_b(t);
+//						if (t->tail_a->content - t->tail_b->content == 1)
+//							push_a(t);
+//						else
+//							rotate_b(t);
+//					}
+//					else if (t->tail_b->prev->prev->content > t->tail_b->prev->content)
+//					{
+//						swap_b(t);
+//						rotate_b(t);
+//						if (t->tail_a->content - t->tail_b->content == 1)
+//							push_a(t);
+//						else
+//							rotate_b(t);
+//					}
+//				}
+//			}
+//			else if (check_if_sorted_b(t) == 0)
+//			{
+//				t->b = t->head_b;
+//				while (1)
+//				{
+//					if (t->head_b)
+//						push_a(t);
+//					else
+//						break;
+//				}
+//				break ;
+//			}
+//			else if (t->tail_b->prev && t->tail_b->prev->prev)
+//			{
+//				sort_stack_three_elems_b(t);
+//				push_a(t);
+//				push_a(t);
+//				push_a(t);
+//			}
+//			else if (t->tail_b->prev)
+//			{
+//				sort_stack_two_elems_b(t);
+//				push_a(t);
+//				push_a(t);
+//			}
+//			print_stack_a(t);
+//			print_stack_b(t);
+//		}
+////		//		print_stack_a(t);
+////		//		print_stack_b(t);
 //	}
-
-//	print_stack_a(t);
-//	print_stack_b(t);
-
-//	if (!check_if_sorted(t))
-//		return ;
-
+//	while (len)
+//	{
+//		rotate_a(t);
+//		len--;
+	}
+	print_stack_a(t);
+	print_stack_b(t);
 }
