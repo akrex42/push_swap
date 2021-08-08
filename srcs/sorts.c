@@ -911,15 +911,33 @@ void sort_all(t_tools *t)
 			int flag = t->flag;
         while (1)
         {
-            if (t->tail_a->flag == flag)
+            if (t->tail_a->order == t->next)
             {
-                ft_putnbr_fd(t->tail_a->flag, 1);
-                push_b(t);
+                rotate_a(t);
+                t->next++;
+            }
+            else if (t->tail_a->flag == flag && flag != 0)
+            {
+                while (t->tail_a->flag == flag)
+                {
+                    push_b(t);
+                }
+                sort_stack_three_elems_b(t);
+                t->flag--;
+                flag = t->flag;
+            }
+            else if (t->flag != 0)
+            {
+                t->flag--;
+                flag = t->flag;
             }
             else
             {
                 break ;
             }
+
+            print_stack_a(t);
+            print_stack_b(t);
         }
         t->flag--;
 
