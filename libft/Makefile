@@ -49,7 +49,7 @@ SRCS	= ft_memset.c \
 	ft_lstadd_back.c \
 	ft_lstsize.c \
 	ft_lstlast.c \
-	ft_lstdelone.c \
+#	ft_lstdelone.c \
 	ft_lstiter.c \
 	ft_lstclear.c \
 	ft_lstmap.c
@@ -58,7 +58,7 @@ HEAD	= libft.h
 OBJS	= ${SRCS:.c=.o}
 NAME	= libft.a
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -O3
+#CFLAGS	= -Wall -Wextra -Werror -O3
 RM		= rm -f
 
 

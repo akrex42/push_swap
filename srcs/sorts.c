@@ -2,7 +2,7 @@
 
 int 	sort_stack_two_elems(t_tools *t)
 {
-	if (t->tail_a->prev && t->tail_a->content - t->tail_a->prev->content == 1)
+	if (t->tail_a->prev && t->tail_a->order - t->tail_a->prev->order == 1)
 	{
 		swap_a(t);
 		return (1);
@@ -19,7 +19,7 @@ void 	sort_stack_three_elems(t_tools *t)
 	t->a = t->tail_a;
 	while (t->a->prev)
 	{
-		if (t->a->content != t->a->prev->content - 1)
+		if (t->a->order != t->a->prev->order - 1)
 		{
 			flag_cycle = 1;
 			break;
@@ -35,18 +35,18 @@ void 	sort_stack_three_elems(t_tools *t)
 	t->a = t->head_a;
 	if (sort_stack_two_elems(t) == 1 && t->a->next->next == NULL)
 	{}
-	else if ((t->a->next->next && t->a->content < t->a->next->next->content) || (t->a->next->next && t->a->content == t->a->next->next->content + 1))
+	else if ((t->a->next->next && t->a->order < t->a->next->next->order) || (t->a->next->next && t->a->order == t->a->next->next->order + 1))
 	{
 		reverse_rotate_a(t);
 		sort_stack_two_elems(t);
 	}
-	else if (t->a->next->next && t->a->content > t->a->next->next->content && t->a->content < t->a->next->content)
+	else if (t->a->next->next && t->a->order > t->a->next->next->order && t->a->order < t->a->next->order)
 	{
 		rotate_a(t);
 //		print_stack_a(t);
 		sort_stack_two_elems(t);
 	}
-	else if (t->a->next->next && t->a->content > t->a->next->next->content && t->a->content < t->a->next->content)
+	else if (t->a->next->next && t->a->order > t->a->next->next->order && t->a->order < t->a->next->order)
 	{
 		rotate_a(t);
 //		print_stack_a(t->a, t->head_a);
@@ -58,7 +58,7 @@ void 	sort_stack_three_elems(t_tools *t)
 
 int 	sort_stack_two_elems_b(t_tools *t)
 {
-	if (t->tail_b->prev && t->tail_b->content < t->tail_b->prev->content)
+	if (t->tail_b->prev && t->tail_b->order < t->tail_b->prev->order)
 	{
 		swap_b(t);
 		return (1);
@@ -79,7 +79,7 @@ void 	sort_stack_three_elems_b(t_tools *t)
 		return ;
 	while (t->b->prev)
 	{
-		if (t->b->content != t->b->prev->content + 1)
+		if (t->b->order != t->b->prev->order + 1)
 		{
 			flag_cycle = 1;
 			break;
@@ -96,13 +96,13 @@ void 	sort_stack_three_elems_b(t_tools *t)
 
 	if (sort_stack_two_elems_b(t) == 1 && t->b->next->next == NULL)
 	{}
-	else if ((t->b->next->next && t->b->content > t->b->next->next->content) || (t->b->next->next && t->b->content == t->b->next->next->content - 1))
+	else if ((t->b->next->next && t->b->order > t->b->next->next->order) || (t->b->next->next && t->b->order == t->b->next->next->order - 1))
 	{
 		reverse_rotate_b(t);
 //		print_stack_a(t->a, t->head_a);
 		sort_stack_two_elems_b(t);
 	}
-	else if (t->b->next->next && t->b->content < t->b->next->next->content && t->b->content > t->b->next->content)
+	else if (t->b->next->next && t->b->order < t->b->next->next->order && t->b->order > t->b->next->order)
 	{
 		rotate_b(t);
 //		print_stack_a(t->a, t->head_a);
@@ -122,15 +122,15 @@ int	find_median(t_tools *t)
 
 	i = 0;
 	t->a = t->head_a;
-	max = t->a->content;
-	min = t->a->content;
+	max = t->a->order;
+	min = t->a->order;
 	len = ft_lstsize(t->a);
 	while (i < len && t->a)
 	{
-		if (max < t->a->content)
-			max = t->a->content;
-		if (min > t->a->content)
-			min = t->a->content;
+		if (max < t->a->order)
+			max = t->a->order;
+		if (min > t->a->order)
+			min = t->a->order;
 		t->a = t->a->next;
 		i++;
 	}
@@ -148,15 +148,15 @@ int	find_median_a(t_tools *t)
 
 	i = 0;
 	t->a = t->head_a;
-	max = t->a->content;
-	min = t->a->content;
+	max = t->a->order;
+	min = t->a->order;
 	len = ft_lstsize(t->a);
 	while (i < len && t->a)
 	{
-		if (max < t->a->content)
-			max = t->a->content;
-		if (min > t->a->content)
-			min = t->a->content;
+		if (max < t->a->order)
+			max = t->a->order;
+		if (min > t->a->order)
+			min = t->a->order;
 		t->a = t->a->next;
 		i++;
 	}
@@ -174,15 +174,15 @@ int	find_median_b(t_tools *t)
 
 	i = 0;
 	t->b = t->head_b;
-	max = t->b->content;
-	min = t->b->content;
+	max = t->b->order;
+	min = t->b->order;
 	len = ft_lstsize(t->b);
 	while (i < len && t->b)
 	{
-		if (max < t->b->content)
-			max = t->b->content;
-		if (min > t->b->content)
-			min = t->b->content;
+		if (max < t->b->order)
+			max = t->b->order;
+		if (min > t->b->order)
+			min = t->b->order;
 		t->b = t->b->next;
 		i++;
 	}
@@ -197,7 +197,7 @@ int check_if_sorted_a(t_tools *t)
 	t->a = t->tail_a;
 	while (t->a->prev)
 	{
-		if (t->a->content != t->a->prev->content - 1)
+		if (t->a->order != t->a->prev->order - 1)
 		{
 			flag_cycle = 1;
 			break;
@@ -215,7 +215,7 @@ int check_if_sorted_b(t_tools *t)
 	t->b = t->tail_b;
 	while (t->b->prev)
 	{
-		if (t->b->content != t->b->prev->content + 1)
+		if (t->b->order != t->b->prev->order + 1)
 		{
 			flag_cycle = 1;
 			break;
@@ -240,9 +240,9 @@ void sort_median_a(t_tools *t)
 	while (i < len && t->a)
 	{
 		t->a = t->tail_a;
-		if (median >= (t->a)->content)
+		if (median >= (t->a)->order)
 			push_b(t);
-		else if (median < (t->a)->content)
+		else if (median < (t->a)->order)
 			rotate_a(t);
 		t->a = (t->a)->prev;
 		i++;
@@ -258,20 +258,23 @@ void sort_median_a(t_tools *t)
 void sort_median_b(t_tools *t)
 {
 	int median;
-	int i;
+	int i = 0;
 	int len;
 
+	len = ft_lstsize(t->a);
 	median = find_median_b(t);
+	t->flag++;
 	t->b = t->head_b;
-	i = 0;
-	len = ft_lstsize(t->b);
-	t->b = t->tail_b;
-	while (i < len && t->b)
+	while (t->b && i < len)
 	{
 		t->b = t->tail_b;
-		if (median <= (t->b)->content)
-			push_a(t);
-		else if (median > (t->b)->content)
+		if (median <= (t->b)->order)
+		{
+            push_a(t);
+            t->tail_a->flag = t->flag;
+            ft_putnbr_fd(t->tail_a->flag, 1);
+        }
+		else if (median > (t->b)->order)
 			rotate_b(t);
 		t->b = (t->b)->prev;
 		i++;
@@ -279,18 +282,22 @@ void sort_median_b(t_tools *t)
 	t->b = t->head_b;
 	if (ft_lstsize(t->b) <= 3)
 	{
+        t->flag++;
 		sort_stack_three_elems_b(t);
 		t->b = t->head_b;
 		while (1) // some problem here
 		{
 			if (t->head_b)
-				push_a(t);
+            {
+                push_a(t);
+                t->tail_a->flag = t->flag;
+            }
 			else
 				break;
 		}
 	}
 }
-
+#if 0
 void sort_five(t_tools *t)
 {
 	int i = 0;
@@ -324,13 +331,13 @@ void swap_and_rotate_till_dead_b(t_tools *t)
 {
 	int flag_cycle = 0;
 	t->b = t->head_b;
-	int min = t->head_b->content;
+	int min = t->head_b->order;
 
 	while (t->b->next)
 	{
-		if (min >= t->b->next->content)
+		if (min >= t->b->next->order)
 		{
-			min = t->b->next->content;
+			min = t->b->next->order;
 			flag_cycle = 1;
 		}
 		t->b = t->b->next;
@@ -338,18 +345,18 @@ void swap_and_rotate_till_dead_b(t_tools *t)
 	while (1)
 	{
 		t->b = t->head_b;
-		if (t->tail_b->prev && (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content != min))
+		if (t->tail_b->prev && (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order != min))
 		{
 			swap_b(t);
 		}
-		else if (t->tail_b->prev && ((t->tail_b->content > t->tail_b->prev->content) || (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content == min)))
+		else if (t->tail_b->prev && ((t->tail_b->order > t->tail_b->prev->order) || (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order == min)))
 		{
 			rotate_b(t);
 		}
 		t->b = t->head_b;
 		while (t->b->next)
 		{
-			if (t->b->content != t->b->next->content - 1)
+			if (t->b->order != t->b->next->order - 1)
 			{
 				flag_cycle = 1;
 				break ;
@@ -360,7 +367,7 @@ void swap_and_rotate_till_dead_b(t_tools *t)
 		{
 			flag_cycle = 0;
 		}
-		else if (t->head_b->content == min)
+		else if (t->head_b->order == min)
 			break ;
 	}
 }
@@ -369,23 +376,23 @@ void swap_and_rotate_till_dead_a(t_tools *t)
 {
 	int flag_cycle = 0;
 
-		int index = t->head_a->content;
+		int index = t->head_a->order;
 		while (1)
 			{
 				t->a = t->head_a;
-				if (t->tail_a->prev && ((t->tail_a->content < t->tail_a->prev->content) || (t->tail_a->content > t->tail_a->prev->content && t->tail_a->content == index)))
+				if (t->tail_a->prev && ((t->tail_a->order < t->tail_a->prev->order) || (t->tail_a->order > t->tail_a->prev->order && t->tail_a->order == index)))
 				{
 					rotate_a(t);
 				}
-				else if (t->tail_a->prev && ((t->tail_a->content == t->tail_a->prev->content + 1)
-					|| (t->tail_a->content > t->tail_a->prev->content)))
+				else if (t->tail_a->prev && ((t->tail_a->order == t->tail_a->prev->order + 1)
+					|| (t->tail_a->order > t->tail_a->prev->order)))
 				{
 					swap_a(t);
 				}
 				t->a = t->head_a;
 				while (t->a->next)
 				{
-					if (t->a->content != t->a->next->content + 1)
+					if (t->a->order != t->a->next->order + 1)
 					{
 						flag_cycle = 1;
 						break ;
@@ -396,7 +403,7 @@ void swap_and_rotate_till_dead_a(t_tools *t)
 				{
 					flag_cycle = 0;
 				}
-				else if (t->head_a->content == index)
+				else if (t->head_a->order == index)
 					break ;
 			}
 }
@@ -434,16 +441,16 @@ void sort_median_a_cycle(t_tools *t, int length_a)
 		return ;
 	}
 	t->a = t->tail_a;
-	if (t->a->prev && t->a->content > t->a->prev->content)
+	if (t->a->prev && t->a->order > t->a->prev->order)
 	{
 		swap_a(t);
 	}
 	t->a = t->head_a;
-	if (t->tail_a && t->tail_a->content - t->head_a->content == 1 && !flag)
+	if (t->tail_a && t->tail_a->order - t->head_a->order == 1 && !flag)
 	{
 		reverse_rotate_a(t);
 	}
-	if (t->tail_a && t->head_a->content - t->tail_a->content == 1 && !flag)
+	if (t->tail_a && t->head_a->order - t->tail_a->order == 1 && !flag)
 	{
 		rotate_a(t);
 	}
@@ -461,11 +468,11 @@ void sort_median_a_cycle(t_tools *t, int length_a)
 			t->a = t->head_a;
 			if (ft_lstsize(t->a) <= 3)
 				break ;
-			if (t->tail_a->prev && t->tail_a->content > t->tail_a->prev->content)
+			if (t->tail_a->prev && t->tail_a->order > t->tail_a->prev->order)
 				swap_a(t);
-			if (median >= (t->tail_a)->content)
+			if (median >= (t->tail_a)->order)
 				push_b(t);
-			else if (median < (t->tail_a)->content)
+			else if (median < (t->tail_a)->order)
 				rotate_a(t);
 //			ft_putnbr_fd(i, 1);
 //			t->a = t->tail_a;
@@ -474,12 +481,12 @@ void sort_median_a_cycle(t_tools *t, int length_a)
 			i++;
 		}
 		t->a = t->tail_a;
-		if (t->a->prev && t->a->content < t->a->prev->content)
+		if (t->a->prev && t->a->order < t->a->prev->order)
 		{
 			swap_a(t);
 		}
 		t->a = t->tail_a;
-		if (t->a->prev->prev && t->a->prev->content > t->a->prev->prev->content && !flag)
+		if (t->a->prev->prev && t->a->prev->order > t->a->prev->prev->order && !flag)
 		{
 			push_b(t);
 			swap_a(t);
@@ -537,12 +544,12 @@ void sort_median_b_cycle(t_tools *t, int length_b)
 		flag = 1;
 	}
 	t->b = t->tail_b;
-	if (t->b->prev && t->b->content < t->b->prev->content)
+	if (t->b->prev && t->b->order < t->b->prev->order)
 	{
 		swap_b(t);
 	}
 	t->b = t->head_b;
-	if (t->tail_b && t->head_b->content - t->tail_b->content == 1 && !flag)
+	if (t->tail_b && t->head_b->order - t->tail_b->order == 1 && !flag)
 	{
 		reverse_rotate_b(t);
 	}
@@ -553,16 +560,16 @@ void sort_median_b_cycle(t_tools *t, int length_b)
 			t->b = t->head_b;
 			if (ft_lstsize(t->b) <= 3)
 				break ;
-			if (t->tail_b->prev && t->tail_b->content < t->tail_b->prev->content)
+			if (t->tail_b->prev && t->tail_b->order < t->tail_b->prev->order)
 				swap_b(t);
-			if (median < (t->tail_b)->content)
+			if (median < (t->tail_b)->order)
 				push_a(t);
-			else if (median >= (t->tail_b)->content)
+			else if (median >= (t->tail_b)->order)
 				rotate_b(t);
 			i++;
 		}
 		t->b = t->tail_b;
-		if (t->b->prev && t->b->content < t->b->prev->content)
+		if (t->b->prev && t->b->order < t->b->prev->order)
 		{
 			swap_b(t);
 		}
@@ -599,18 +606,18 @@ void sort_b_three(t_tools *t)
 	{
 		if (t->tail_b->prev && t->tail_b->prev->prev && t->tail_b->prev->prev->prev)
 		{
-			if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+			if (t->tail_b->order > t->tail_b->prev->order && t->tail_b->order > t->tail_b->prev->prev->order)
 			{
-				if (t->tail_a->content - t->tail_b->content == 1)
+				if (t->tail_a->order - t->tail_b->order == 1)
 				{
 					push_a(t);
 				}
 				else
 					rotate_b(t);
 			}
-			else if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+			else if (t->tail_b->order > t->tail_b->prev->order && t->tail_b->order < t->tail_b->prev->prev->order)
 			{
-				if (t->tail_a->content - t->tail_b->prev->prev->content == 1)
+				if (t->tail_a->order - t->tail_b->prev->prev->order == 1)
 				{
 					rotate_b(t);
 					rotate_b(t);
@@ -621,10 +628,10 @@ void sort_b_three(t_tools *t)
 				else
 					rotate_b(t);
 			}
-			else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+			else if (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order > t->tail_b->prev->prev->order)
 			{
 				swap_b(t);
-				if (t->tail_a->content - t->tail_b->content == 1)
+				if (t->tail_a->order - t->tail_b->order == 1)
 				{
 					push_a(t);
 				}
@@ -634,21 +641,21 @@ void sort_b_three(t_tools *t)
 					rotate_b(t);
 				}
 			}
-			else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+			else if (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order < t->tail_b->prev->prev->order)
 			{
-				if (t->tail_b->prev->prev->content < t->tail_b->prev->content)
+				if (t->tail_b->prev->prev->order < t->tail_b->prev->order)
 				{
 					swap_b(t);
-					if (t->tail_a->content - t->tail_b->content == 1)
+					if (t->tail_a->order - t->tail_b->order == 1)
 						push_a(t);
 					else
 						rotate_b(t);
 				}
-				else if (t->tail_b->prev->prev->content > t->tail_b->prev->content)
+				else if (t->tail_b->prev->prev->order > t->tail_b->prev->order)
 				{
 					swap_b(t);
 					rotate_b(t);
-					if (t->tail_a->content - t->tail_b->content == 1)
+					if (t->tail_a->order - t->tail_b->order == 1)
 						push_a(t);
 					else
 						rotate_b(t);
@@ -734,18 +741,18 @@ void prepare_b(t_tools *t)
 	int i = 0;
 	int len = ft_lstsize(t->head_b);
 	t->b = t->head_b;
-	int max = t->b->content;
+	int max = t->b->order;
 	while (i < len && t->b)
 	{
-		if (max < t->b->content)
-			max = t->b->content;
+		if (max < t->b->order)
+			max = t->b->order;
 		i++;
 		t->b = t->b->next;
 	}
 	t->b = t->head_b;
 	while (t->b)
 	{
-		if (t->b->content == max)
+		if (t->b->order == max)
 		{
 			len1 = ft_lstsize(t->b);
 			break ;
@@ -761,6 +768,8 @@ void prepare_b(t_tools *t)
 	}
 	push_a(t);
 }
+
+#endif
 
 void sort_all(t_tools *t)
 {
@@ -779,6 +788,7 @@ void sort_all(t_tools *t)
 //	{
 //		sort_ten(t);
 //	}
+//    ft_putnbr_fd(ft_lstsize(t->a), 1);
 	if (ft_lstsize(t->a) <= 101)
 	{
 		print_stack_a(t);
@@ -791,18 +801,18 @@ void sort_all(t_tools *t)
 //		{
 //			if (t->tail_b->prev && t->tail_b->prev->prev && t->tail_b->prev->prev->prev)
 //			{
-//				if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+//				if (t->tail_b->order > t->tail_b->prev->order && t->tail_b->order > t->tail_b->prev->prev->order)
 //				{
-//					if (t->tail_a->content - t->tail_b->content == 1)
+//					if (t->tail_a->order - t->tail_b->order == 1)
 //					{
 //						push_a(t);
 //					}
 //					else
 //						rotate_b(t);
 //				}
-//				else if (t->tail_b->content > t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+//				else if (t->tail_b->order > t->tail_b->prev->order && t->tail_b->order < t->tail_b->prev->prev->order)
 //				{
-//					if (t->tail_a->content - t->tail_b->prev->prev->content == 1)
+//					if (t->tail_a->order - t->tail_b->prev->prev->order == 1)
 //					{
 //						rotate_b(t);
 //						rotate_b(t);
@@ -813,10 +823,10 @@ void sort_all(t_tools *t)
 //					else
 //						rotate_b(t);
 //				}
-//				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content > t->tail_b->prev->prev->content)
+//				else if (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order > t->tail_b->prev->prev->order)
 //				{
 //					swap_b(t);
-//					if (t->tail_a->content - t->tail_b->content == 1)
+//					if (t->tail_a->order - t->tail_b->order == 1)
 //					{
 //						push_a(t);
 //					}
@@ -826,21 +836,21 @@ void sort_all(t_tools *t)
 //						rotate_b(t);
 //					}
 //				}
-//				else if (t->tail_b->content < t->tail_b->prev->content && t->tail_b->content < t->tail_b->prev->prev->content)
+//				else if (t->tail_b->order < t->tail_b->prev->order && t->tail_b->order < t->tail_b->prev->prev->order)
 //				{
-//					if (t->tail_b->prev->prev->content < t->tail_b->prev->content)
+//					if (t->tail_b->prev->prev->order < t->tail_b->prev->order)
 //					{
 //						swap_b(t);
-//						if (t->tail_a->content - t->tail_b->content == 1)
+//						if (t->tail_a->order - t->tail_b->order == 1)
 //							push_a(t);
 //						else
 //							rotate_b(t);
 //					}
-//					else if (t->tail_b->prev->prev->content > t->tail_b->prev->content)
+//					else if (t->tail_b->prev->prev->order > t->tail_b->prev->order)
 //					{
 //						swap_b(t);
 //						rotate_b(t);
-//						if (t->tail_a->content - t->tail_b->content == 1)
+//						if (t->tail_a->order - t->tail_b->order == 1)
 //							push_a(t);
 //						else
 //							rotate_b(t);
@@ -879,21 +889,54 @@ void sort_all(t_tools *t)
 //		print_stack_b(t);
 			if (check_if_sorted_a(t) == 0)
 				return ;
-			int length = ft_lstsize(t->head_a);
-			sort_median_a_cycle(t, length);
-//			ft_putstr_fd("here", 1);
-//			length /= 2;
-//			sort_median_b_cycle(t, length);
-			t->b = t->head_b;
-			if (t->head_b)
-			{
-				int len = ft_lstsize(t->b);
-				while (len)
-				{
-					push_a(t);
-					len--;
-				}
-			}
+			sort_median_a(t);
+			while (t->head_b)
+            {
+                sort_median_b(t);
+                if (t->tail_b && t->tail_b->order == t->next)
+                {
+                    push_a(t);
+                    rotate_a(t);
+                    t->next++;
+                    ft_putnbr_fd(t->next, 1);
+                    if (t->tail_b->prev && t->tail_b->prev->order == t->next)
+                    {
+                        push_a(t);
+                        rotate_a(t);
+                        t->next++;
+                        ft_putnbr_fd(t->next, 1);
+                    }
+                }
+            }
+			int flag = t->flag;
+        while (1)
+        {
+            if (t->tail_a->flag == flag)
+            {
+                ft_putnbr_fd(t->tail_a->flag, 1);
+                push_b(t);
+            }
+            else
+            {
+                break ;
+            }
+        }
+        t->flag--;
+
+//        if (check_if_sorted_a(t) == 0)
+//            return ;
+//        sort_median_a(t);
+
+
+//t			if (t->head_b)
+//			{
+//				int len = ft_lstsize(t->b);
+//				while (len)
+//				{
+//					push_a(t);
+//					len--;
+//				}
+//			}
 //			print_stack_a(t);
 //			print_stack_b(t);
 	}

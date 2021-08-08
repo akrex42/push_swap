@@ -11,7 +11,7 @@ void	rotate_a(t_tools *t)
 	{
 		tmp1 = t->tail_a;
 		lst = ft_lstadd_front(&(t->head_a), &(t->tail_a));
-		lst->content = t->tail_a->content;
+		lst->order = t->tail_a->order;
 		t->head_a = lst;
 		t->tail_a = t->tail_a->prev;
 		if (t->tail_a)
@@ -36,7 +36,7 @@ void	rotate_ab(t_tools *t)
 	{
 		tmp = t->tail_a;
 		lst = ft_lstadd_front(&(t->head_a), &(t->tail_a));
-		lst->content = t->tail_a->content;
+		lst->order = t->tail_a->order;
 		t->head_a = lst;
 		t->tail_a = (t->tail_a)->prev;
 		if (t->tail_a)
@@ -44,7 +44,7 @@ void	rotate_ab(t_tools *t)
 		free(tmp);
 		tmp1 = t->tail_b;
 		lst = ft_lstadd_front(&(t->head_b),&(t->tail_b));
-		lst->content = (t->tail_b)->content;
+		lst->order = (t->tail_b)->order;
 		t->head_b = lst;
 		t->tail_b = (t->tail_b)->prev;
 		if (t->tail_b)
@@ -67,7 +67,7 @@ void	reverse_rotate_a(t_tools *t)
 	{
 		tmp1 = t->head_a;
 		lst = ft_lstadd_back(&(t->head_a), &(t->tail_a));
-		lst->content = (t->head_a)->content;
+		lst->order = (t->head_a)->order;
 		t->tail_a = lst;
 		t->head_a = (t->head_a)->next;
 		if (t->head_a)
@@ -89,7 +89,7 @@ void	reverse_rotate_b(t_tools *t)
 	{
 		tmp1 = t->head_b;
 		lst = ft_lstadd_back(&(t->head_b),&(t->tail_b));
-		lst->content = (t->head_b)->content;
+		lst->order = (t->head_b)->order;
 		t->tail_b = lst;
 		t->head_b = (t->head_b)->next;
 		if (t->head_b)
@@ -114,7 +114,7 @@ void	reverse_rotate_ab(t_tools *t)
 	{
 		tmp = t->head_a;
 		lst = ft_lstadd_back(&(t->head_a), &(t->tail_a));
-		lst->content = (t->head_a)->content;
+		lst->order = (t->head_a)->order;
 		t->tail_a = lst;
 		t->head_a = (t->head_a)->next;
 		if (t->head_a)
@@ -122,7 +122,7 @@ void	reverse_rotate_ab(t_tools *t)
 		free(tmp);
 		tmp1 = t->head_b;
 		lst = ft_lstadd_back(&(t->head_b),&(t->tail_b));
-		lst->content = (t->head_b)->content;
+		lst->order = (t->head_b)->order;
 		t->tail_b = lst;
 		t->head_b = (t->head_b)->next;
 		if (t->head_b)

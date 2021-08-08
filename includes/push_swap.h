@@ -19,6 +19,8 @@ typedef struct s_tools
 	t_list		*tail_b;
 	t_list		*b;
 	int 		size;
+	int         flag;
+	int         next;
 
 } t_tools;
 

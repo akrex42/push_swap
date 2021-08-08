@@ -12,7 +12,7 @@ void	rotate_b(t_tools *t)
 	{
 		tmp1 = t->tail_b;
 		lst = ft_lstadd_front(&(t->head_b), &(t->tail_b));
-		lst->content = (t->tail_b)->content;
+		lst->order = (t->tail_b)->order;
 		t->head_b = lst;
 		t->tail_b = (t->tail_b)->prev;
 		if (t->tail_b)
@@ -31,6 +31,8 @@ void 	init_struct_tools(t_tools *t)
 	t->head_b = NULL;
 	t->tail_b = NULL;
 	t->b = NULL;
+	t->next = 0;
+	t->flag = 0;
 }
 
 void 	create_two_tabs(t_tools *t, char **argv)
@@ -114,7 +116,7 @@ void 	add_indexes_to_list(t_tools *t)
 			if (t->tab_original[i] == t->tab_sorted[j])
 			{
 				t->a = ft_lstadd_back(&(t->head_a), &(t->tail_a));
-				t->a->content = j;
+				t->a->order = j;
 			}
 			j++;
 		}

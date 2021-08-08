@@ -34,7 +34,7 @@ void 	print_stack_a(t_tools *t)
 
 	while (t->a)
 	{
-		ft_putnbr_fd(t->a->content, 1);
+		ft_putnbr_fd(t->a->order, 1);
 		ft_putchar_fd(' ', 1);
 		t->a = t->a->next;
 	}
@@ -48,7 +48,7 @@ void 	print_stack_b(t_tools *t)
 
 	while (t->b)
 	{
-		ft_putnbr_fd(t->b->content, 1);
+		ft_putnbr_fd(t->b->order, 1);
 		ft_putchar_fd(' ', 1);
 		t->b = t->b->next;
 	}

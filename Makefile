@@ -12,9 +12,9 @@ DEPENDS		= $(patsubst %.c,%.d,$(SRCS))
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+#CFLAGS		= -Wall -Wextra -Werror
 
-LDFLAGS		= -Wall -Wextra -Werror
+#LDFLAGS		= -Wall -Wextra -Werror
 
 RM			= rm -f
 
