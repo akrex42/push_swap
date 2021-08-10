@@ -58,7 +58,7 @@ HEAD	= libft.h
 OBJS	= ${SRCS:.c=.o}
 NAME	= libft.a
 CC		= gcc
-#CFLAGS	= -Wall -Wextra -Werror -O3
+CFLAGS	= -Wall -Wextra -Werror -O3
 RM		= rm -f
 
 

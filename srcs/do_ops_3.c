@@ -31,7 +31,7 @@ void 	init_struct_tools(t_tools *t)
 	t->head_b = NULL;
 	t->tail_b = NULL;
 	t->b = NULL;
-	t->next = 0;
+	t->next = 1;
 	t->flag = 0;
 }
 
@@ -44,6 +44,7 @@ void 	create_two_tabs(t_tools *t, char **argv)
 	j = 0;
 	i = 0;
 	splitted = ft_split(argv[1], ' ');
+//	ft_putstr_fd(argv[1], 1);
 	while (splitted[i] != NULL)
 	{
 //		ft_putendl_fd(splitted[i]);
@@ -116,7 +117,8 @@ void 	add_indexes_to_list(t_tools *t)
 			if (t->tab_original[i] == t->tab_sorted[j])
 			{
 				t->a = ft_lstadd_back(&(t->head_a), &(t->tail_a));
-				t->a->order = j;
+				t->a->order = j + 1;
+				t->a->flag = 0;
 			}
 			j++;
 		}
