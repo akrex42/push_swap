@@ -56,5 +56,6 @@ int		check_if_sorted_b(t_tools *t);
 void	sort_median_a(t_tools *t);
 void	sort_median_b(t_tools *t);
 void	sort_five(t_tools *t);
+void check_tail_ab(t_tools *t, int len);
 
 #endif
