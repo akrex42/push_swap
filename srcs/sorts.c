@@ -247,11 +247,12 @@ void sort_median_a(t_tools *t)
 		{
 			push_b(t);
 			t->tail_b->flag = t->flag;
+			ft_putnbr_fd(t->tail_b->flag, 1);
 		}
 		else if (median < (t->a)->order)
 		{
 			rotate_a(t);
-			t->head_a->flag = t->flag;
+			ft_putnbr_fd(t->head_a->flag, 1);
 		}
 		t->a = (t->a)->prev;
 		i++;
@@ -287,6 +288,7 @@ void sort_median_b(t_tools *t)
 		{
 			rotate_b(t);
 			t->head_b->flag = t->flag;
+			ft_putnbr_fd(t->head_b->flag, 1);
 			check_tail_ab(t, len);
 		}
 		check_tail_ab(t, len);
