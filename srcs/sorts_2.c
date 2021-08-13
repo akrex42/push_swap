@@ -80,12 +80,15 @@ void   sort(t_tools *t, int len)
 				{
 					push_b(t);
 					check_tail_ab(t, len);
+					check_tail_ab(t, len);
+					check_tail_ab(t, len);
 				}
 				check_tail_ab(t, len);
 				while (t->head_b)
 				{
 					check_tail_ab(t, len);
 					sort_median_b(t);
+					check_tail_ab(t, len);
 				}
 			}
 			else if (t->tail_a->flag == 0 && t->flag == 0 && ((check_if_sorted_a(t) != 0) || (check_if_sorted_a(t) == 0 && ft_lstsize(t->head_a) != len)))
@@ -118,7 +121,7 @@ void   sort(t_tools *t, int len)
 					reverse_rotate_a(t);
 					t->tail_a->flag = 0;
 				}
-				check_tail_ab(t, len); // maybe breaks all
+				check_tail_ab(t, len);
 				while (t->head_b)
 				{
 					check_tail_ab(t, len);
@@ -126,7 +129,9 @@ void   sort(t_tools *t, int len)
 					check_tail_ab(t, len);
 				}
 			}
+			check_tail_ab(t, len);
 		}
+		check_tail_ab(t, len);
 	}
 	check_tail_ab(t, len);
 //	print_stack_a(t);
@@ -185,8 +190,8 @@ void sort_all(t_tools *t)
 				sort(t, len);
 				check_tail_ab(t, len);
 			}
+			check_tail_ab(t, len);
 		}
-		check_tail_ab(t, len);
 	}
 //	print_stack_a(t);
 //	print_stack_b(t);
