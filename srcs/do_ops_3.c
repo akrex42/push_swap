@@ -35,12 +35,12 @@ void 	init_struct_tools(t_tools *t)
 	t->flag = 0;
 }
 
-void 	create_two_tabs(t_tools *t, char **argv)
+void 	create_two_tabs(t_tools *t, char **argv, int argc)
 {
 	int	i;
 	int j;
 	char **splitted;
-
+	(void)argc;
 	j = 0;
 	i = 0;
 	splitted = ft_split(argv[1], ' ');

@@ -36,7 +36,7 @@ void	reverse_rotate_a(t_tools *t);
 void	reverse_rotate_b(t_tools *t);
 void	reverse_rotate_ab(t_tools *t);
 void 	init_struct_tools(t_tools *t);
-void 	create_two_tabs(t_tools *t, char **argv);
+void 	create_two_tabs(t_tools *t, char **argv, int argc);
 void 	sort_tab(t_tools *t);
 void 	print_tab_sorted(t_tools *t);
 void 	print_tab_not_sorted(t_tools *t);
