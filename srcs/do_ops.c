@@ -16,8 +16,12 @@ void 	push_b(t_tools *t)
 		else
 			t->head_a = NULL;
 		free(tmp);
+//		write(1, "p", 1);
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "pb";
 		write(1, "pb", 2);
 		write(1, "\n", 1);
+//		write(1, "\n", 1);
 	}
 }
 
@@ -37,8 +41,12 @@ void 	push_a(t_tools *t)
 		else
 			t->head_b = NULL;
 		free(tmp);
+
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "pa";
 		write(1, "pa", 2);
 		write(1, "\n", 1);
+//		write(1, "\n", 1);
 	}
 }
 
@@ -51,6 +59,10 @@ void	swap_a(t_tools *t)
 		tmp = (t->tail_a)->prev->order;
 		(t->tail_a)->prev->order = (t->tail_a)->order;
 		(t->tail_a)->order = tmp;
+
+//		write(1, "\n", 1);
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "sa";
 		write(1, "sa", 2);
 		write(1, "\n", 1);
 	}
@@ -65,6 +77,9 @@ void	swap_b(t_tools *t)
 		tmp = (t->tail_b)->prev->order;
 		(t->tail_b)->prev->order = (t->tail_b)->order;
 		(t->tail_b)->order = tmp;
+
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "sb";
 		write(1, "sb", 2);
 		write(1, "\n", 1);
 	}
@@ -82,6 +97,9 @@ void	swap_ab(t_tools *t)
 		tmp = (t->tail_a)->prev->order;
 		(t->tail_a)->prev->order = (t->tail_a)->order;
 		(t->tail_a)->order = tmp;
+//
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "ss";
 		write(1, "ss", 2);
 		write(1, "\n", 1);
 	}

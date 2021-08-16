@@ -6,6 +6,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <math.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 
 typedef struct s_tools
@@ -17,10 +18,15 @@ typedef struct s_tools
 	t_list		*a;
 	t_list		*head_b;
 	t_list		*tail_b;
+	t_list		*head_c;
+	t_list		*tail_c;
 	t_list		*b;
+	t_list		*c;
 	int 		size;
 	int         flag;
 	int         next;
+	int 		fd;
+	char 		*line_prev;
 
 } t_tools;
 
@@ -56,6 +62,8 @@ int		check_if_sorted_b(t_tools *t);
 void	sort_median_a(t_tools *t);
 void	sort_median_b(t_tools *t);
 void	sort_five(t_tools *t);
-void check_tail_ab(t_tools *t, int len);
+void 	check_tail_ab(t_tools *t, int len);
+int		get_next_line(t_tools *t, char **line);
+void 	print_stack_c(t_tools *t);
 
 #endif

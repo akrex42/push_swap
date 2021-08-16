@@ -18,8 +18,12 @@ void	rotate_b(t_tools *t)
 		if (t->tail_b)
 			(t->tail_b)->next = NULL;
 		free(tmp1);
+
+//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
+//		t->c->content = "rb";
 		write(1, "rb", 2);
 		write(1, "\n", 1);
+//		write(1, "\n", 1);
 	}
 }
 

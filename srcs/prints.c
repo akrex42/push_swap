@@ -55,3 +55,17 @@ void 	print_stack_b(t_tools *t)
 	ft_putchar_fd('\n', 1);
 	t->b = t->head_b;
 }
+
+//void 	print_stack_c(t_tools *t)
+//{
+//	t->c = t->tail_c;
+//	ft_putstr_fd("here", 1);
+//	while (t->c)
+//	{
+//		ft_putstr_fd((char *)t->c->content, 1);
+//		ft_putchar_fd('\n', 1);
+//		t->c = t->c->prev;
+//	}
+//	ft_putchar_fd('\n', 1);
+//	t->c = t->head_c;
+//}
