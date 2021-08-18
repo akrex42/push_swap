@@ -119,21 +119,12 @@ void   sort(t_tools *t, int len)
 				}
 				int median = (max + min) / 2;
 				t->a = t->tail_a;
-				while (t->a->flag == t->flag)
+				while (t->tail_a->flag == t->flag)
 				{
-					if (median >= (t->a)->order)
+					if (median >= (t->tail_a)->order)
 						push_b(t);
-					else if ((t->a)->order && (t->a)->order == t->next)
-					{
+					else if (median < (t->tail_a)->order)
 						rotate_a(t);
-						t->head_a->flag = 1000;
-						t->next++;
-					}
-					else if (median < (t->a)->order && t->a->prev->flag == t->flag)
-						rotate_a(t);
-					else if (median < (t->a)->order && t->a->prev->flag != t->flag)
-						break ;
-					t->a = (t->a)->prev;
 				}
 				while (t->head_a && t->head_a->flag != 1000)
 				{
@@ -157,6 +148,7 @@ void   sort(t_tools *t, int len)
 		}
 		check_tail_ab(t, len);
 	}
+
 	check_tail_ab(t, len);
 //	print_stack_a(t);
 //	print_stack_b(t);
@@ -190,10 +182,10 @@ void sort_all(t_tools *t)
 	}
 	else if (ft_lstsize(t->a) <= 1000)
 	{
-//		t->head_c = (t_list *)malloc(sizeof(t_list));
-//		t->head_c->content = "fuck";
-//		t->tail_c = (t_list *)malloc(sizeof(t_list));
+//		print_stack_a(t);
+//		print_stack_b(t);
 
+//		 return ;
 		int len = ft_lstsize(t->a);
 		if (check_if_sorted_a(t) == 0)
 			return ;

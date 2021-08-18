@@ -7,7 +7,6 @@ void	rotate_a(t_tools *t)
 
 	tmp1 = NULL;
 	lst = NULL;
-//	char buf[2];
 	if (t->tail_a)
 	{
 		tmp1 = t->tail_a;
@@ -18,13 +17,9 @@ void	rotate_a(t_tools *t)
 		if (t->tail_a)
 			t->tail_a->next = NULL;
 		free(tmp1);
-//		ft_putstr_fd("here", 1);
-//
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "ra";
-		write(1, "ra", 2);
-		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "ra";
 }
 
 void	rotate_ab(t_tools *t)
@@ -55,12 +50,9 @@ void	rotate_ab(t_tools *t)
 		if (t->tail_b)
 			(t->tail_b)->next = NULL;
 		free(tmp1);
-//
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "rr";
-		write(1, "rr", 2);
-		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "rr";
 }
 
 void	reverse_rotate_a(t_tools *t)
@@ -81,12 +73,9 @@ void	reverse_rotate_a(t_tools *t)
 		if (t->head_a)
 			(t->head_a)->prev = NULL;
 		free(tmp1);
-
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "rra";
-		write(1, "rra", 3);
-		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "rra";
 }
 
 void	reverse_rotate_b(t_tools *t)
@@ -106,12 +95,9 @@ void	reverse_rotate_b(t_tools *t)
 		if (t->head_b)
 			(t->head_b)->prev = NULL;
 		free(tmp1);
-
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "rrb";
-		write(1, "rrb", 3);
-		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "rrb";
 }
 
 void	reverse_rotate_ab(t_tools *t)
@@ -142,10 +128,7 @@ void	reverse_rotate_ab(t_tools *t)
 		if (t->head_b)
 			(t->head_b)->prev = NULL;
 		free(tmp1);
-//
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "rrr";
-		write(1, "rrr", 3);
-		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "rrr";
 }

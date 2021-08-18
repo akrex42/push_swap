@@ -18,13 +18,9 @@ void	rotate_b(t_tools *t)
 		if (t->tail_b)
 			(t->tail_b)->next = NULL;
 		free(tmp1);
-
-//		t->c = ft_lstadd_front(&(t->head_c), &(t->tail_c));
-//		t->c->content = "rb";
-		write(1, "rb", 2);
-		write(1, "\n", 1);
-//		write(1, "\n", 1);
 	}
+	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+	t->c->content = "rb";
 }
 
 void 	init_struct_tools(t_tools *t)
@@ -37,6 +33,9 @@ void 	init_struct_tools(t_tools *t)
 	t->b = NULL;
 	t->next = 1;
 	t->flag = 0;
+	t->head_c = NULL;
+	t->c = NULL;
+	t->tail_c = NULL;
 }
 
 void 	create_two_tabs(t_tools *t, char **argv, int argc)

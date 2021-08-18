@@ -265,8 +265,9 @@ void sort_median_a(t_tools *t)
 		else if (median < (t->a)->order)
 		{
 			rotate_a(t);
+			t->head_a->flag = 0;
 		}
-		t->a = (t->a)->prev;
+//		t->a = (t->a)->prev;
 		i++;
 		t->a = t->head_a;
 	}

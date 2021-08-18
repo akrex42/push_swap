@@ -20,8 +20,9 @@ int		main(int argc, char **argv)
 
 	add_indexes_to_list(&t);
 	sort_all(&t);
-//	ft_putstr_fd("here", 1);
-//	print_stack_c(&t);
+
+	change_stack_c(&t);
+	print_stack_c(&t);
 
 	t.a = t.head_a;
 	int i = argc - 1;
