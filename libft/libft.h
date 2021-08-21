@@ -20,9 +20,9 @@
 
 typedef struct s_list
 {
-	int 			order;
-	int             flag;
-	void 			*content;
+	int				order;
+	int				flag;
+	void			*content;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
@@ -62,9 +62,9 @@ void				*ft_calloc(size_t num, size_t size);
 int					ft_atoi(const char *str);
 int					ft_strncmp(const char *str1, const char *str2, size_t num);
 char				*ft_strdup(const char *str);
-char				*ft_strnstr (const char *big, const char *little,
+char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
-char				*ft_substr (char const *s, unsigned int start, size_t len);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);

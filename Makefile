@@ -12,9 +12,9 @@ DEPENDS		= $(patsubst %.c,%.d,$(SRCS))
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g
 
-LDFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS		= -Wall -Wextra -Werror -g
 
 RM			= rm -f
 

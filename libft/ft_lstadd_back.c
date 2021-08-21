@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_list 	*ft_lstadd_back(t_list **head, t_list **tail)
+t_list	*ft_lstadd_back(t_list **head, t_list **tail)
 {
 	t_list	*lstnew;
 
