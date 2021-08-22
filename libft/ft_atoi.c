@@ -12,15 +12,47 @@
 
 #include "libft.h"
 
+void	check_str(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(ft_isdigit(str[i])))
+		{
+			ft_putendl_fd("Error", 2);
+			exit (-1);
+		}
+		i++;
+	}
+}
+
+long	check_number(const char *str, int i, long res)
+{
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		res = res * 10 + (str[i] - '0');
+		if (res > INT_MAX)
+		{
+			ft_putendl_fd("Error", 2);
+			exit (-1);
+		}
+		i++;
+	}
+	return (res);
+}
+
 int	ft_atoi(const char *str)
 {
 	int			i;
-	long long	res;
+	long		res;
 	int			minus;
 
-	i = 0;
 	minus = 1;
 	res = 0;
+	i = 0;
+	check_str(str);
 	while (str[i] == '\n' || str[i] == '\t' || str[i] == ' '
 		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
@@ -30,10 +62,6 @@ int	ft_atoi(const char *str)
 			minus = -1;
 		i++;
 	}
-	while (str[i] <= '9' && str[i] >= '0')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
+	res = check_number(str, i, res);
 	return (res * minus);
 }

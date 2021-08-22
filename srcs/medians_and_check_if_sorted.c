@@ -21,6 +21,7 @@ int	check_if_sorted_b(t_tools *t)
 
 void	main_cycle_a(t_tools *t, int median, int len, int i)
 {
+	t->a = t->tail_a;
 	while (i < len && t->a)
 	{
 		t->a = t->tail_a;
@@ -29,10 +30,15 @@ void	main_cycle_a(t_tools *t, int median, int len, int i)
 			push_b(t);
 			t->tail_b->flag = t->flag;
 		}
-		else if (median < (t->a)->order)
+		else if (median < (t->a)->order && t->a->prev)
 		{
 			rotate_a(t);
 			t->head_a->flag = 0;
+		}
+		else if (median < (t->a)->order && t->a->prev == NULL)
+		{
+			t->head_a->flag = 0;
+			break ;
 		}
 		i++;
 		t->a = t->head_a;
@@ -67,11 +73,16 @@ void	main_cycle_b(t_tools *t, int median, int len, int i)
 			t->tail_a->flag = t->flag;
 			check_tail_ab(t, len);
 		}
-		else if (t->b && median > (t->b)->order)
+		else if (t->b && median > (t->b)->order && t->b->prev)
 		{
 			rotate_b(t);
 			t->head_b->flag = t->flag;
 			check_tail_ab(t, len);
+		}
+		else if (t->b && median > (t->b)->order && t->b->prev == NULL)
+		{
+			t->head_b->flag = t->flag;
+			break ;
 		}
 		check_tail_ab(t, len);
 		i++;

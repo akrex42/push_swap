@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "../libft/libft.h"
 
 typedef struct s_tools
@@ -86,5 +87,8 @@ int		check_rb_ra_1(t_tools *t);
 int		check_rb_ra_2(t_tools *t);
 void	sort(t_tools *t, int len);
 void	still_to_sort(t_tools *t, int len);
+void	flag_zero_cycle(t_tools *t, int median);
+void	swap(t_tools *t, int index, int j, int min);
+void	check_args(int argc);
 
 #endif

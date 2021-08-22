@@ -16,6 +16,28 @@ void	init_struct_tools(t_tools *t)
 	t->flag_rotate = 0;
 }
 
+void	create_two_tabs_cycle(t_tools *t, int i, int j, char **argv)
+{
+	int	k;
+
+	while (i > 0)
+	{
+		t->tab_sorted[j] = ft_atoi(argv[i]);
+		k = 0;
+		while (k != j)
+		{
+			if (t->tab_sorted[k] == t->tab_sorted[j])
+			{
+				ft_putendl_fd("Error", 2);
+				exit (-1);
+			}
+			k++;
+		}
+		i--;
+		j++;
+	}
+}
+
 void	create_two_tabs(t_tools *t, char **argv, int argc)
 {
 	int	i;
@@ -26,12 +48,7 @@ void	create_two_tabs(t_tools *t, char **argv, int argc)
 	i = t->size;
 	t->tab_sorted = malloc(sizeof(t->tab_sorted) * (t->size));
 	t->tab_original = malloc(sizeof(t->tab_sorted) * (t->size));
-	while (i > 0)
-	{
-		t->tab_sorted[j] = ft_atoi(argv[i]);
-		i--;
-		j++;
-	}
+	create_two_tabs_cycle(t, i, j, argv);
 	i = t->size;
 	j = 0;
 	while (i > 0)
@@ -40,15 +57,6 @@ void	create_two_tabs(t_tools *t, char **argv, int argc)
 		i--;
 		j++;
 	}
-}
-
-void	swap(t_tools *t, int index, int j, int min)
-{
-	int	tmp;
-
-	tmp = t->tab_sorted[j];
-	t->tab_sorted[j] = min;
-	t->tab_sorted[index] = tmp;
 }
 
 void	sort_tab(t_tools *t)

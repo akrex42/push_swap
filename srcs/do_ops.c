@@ -51,12 +51,12 @@ void	rotate_b(t_tools *t)
 		if (t->tail_b)
 			(t->tail_b)->next = NULL;
 		free(tmp1);
+		if (t->flag_rotate == 0)
+		{
+			t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+			t->c->content = "rb";
+		}
 	}
-//	if (t->flag_rotate == 0)
-//	{
-		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-		t->c->content = "ra";
-//	}
 }
 
 void	check_head_b(t_tools *t)

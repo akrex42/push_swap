@@ -89,14 +89,11 @@ void	size_five(t_tools *t)
 
 void	sort_all(t_tools *t)
 {
-//	print_stack_a(t);
-//	print_stack_b(t);
-
 	t->a = t->head_a;
 	if (ft_lstsize(t->a) <= 3)
 		sort_stack_three_elems(t);
 	else if (ft_lstsize(t->a) <= 5)
 		size_five(t);
-	else if (ft_lstsize(t->a) <= 1000)
+	else
 		size_thousand(t);
 }

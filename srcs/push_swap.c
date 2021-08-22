@@ -5,35 +5,6 @@
 bigger than an integer, and/or there are duplicates.
  */
 
-void	check_tail_ab(t_tools *t, int len)
-{
-	while (t->tail_a && t->tail_a->order == t->next
-		&& ((check_if_sorted_a(t) != 0)
-			|| (check_if_sorted_a(t) == 0 && ft_lstsize(t->head_a) != len)))
-	{
-		rotate_a(t);
-		t->head_a->flag = 1000;
-		t->next++;
-	}
-	while (t->tail_a->prev && t->tail_a->prev->order == t->next
-		&& ((check_if_sorted_a(t) != 0)
-			|| (check_if_sorted_a(t) == 0 && ft_lstsize(t->head_a) != len)))
-	{
-		if (t->tail_b && t->tail_b->prev
-			&& t->tail_b->prev->order < t->tail_b->order)
-			swap_ab(t);
-		else
-			swap_a(t);
-		rotate_a(t);
-		t->head_a->flag = 1000;
-		t->next++;
-	}
-	check_tail_b(t, len);
-	check_head_b(t);
-	t->a = t->head_a;
-	t->b = t->head_b;
-}
-
 void	flag_zero_part_2(t_tools *t, int len)
 {
 	while (t->head_a && t->head_a->flag != 1000)
@@ -73,14 +44,7 @@ void	flag_zero(t_tools *t, int len)
 		t->a = t->a->prev;
 	}
 	median = (max + min) / 2;
-	t->a = t->tail_a;
-	while (t->tail_a->flag == t->flag)
-	{
-		if (median >= (t->tail_a)->order)
-			push_b(t);
-		else if (median < (t->tail_a)->order)
-			rotate_a(t);
-	}
+	flag_zero_cycle(t, median);
 	flag_zero_part_2(t, len);
 }
 
@@ -103,25 +67,28 @@ void	flag_non_zero(t_tools *t, int len)
 	}
 }
 
-int	main(int argc, char **argv)
+void	check_args(int argc)
 {
-	t_tools	t;
-
-	init_struct_tools(&t);
-	create_two_tabs(&t, argv, argc);
-	sort_tab(&t);
-	add_indexes_to_list(&t);
-//		print_stack_a(&t);
-//		print_stack_b(&t);
-	sort_all(&t);
-//	print_stack_a(&t);
-//	print_stack_b(&t);
-//	change_stack_c(&t);
-	print_stack_c(&t);
-	free_items(&t, argc);
-	return (0);
+	if (argc == 1)
+		exit (-1);
 }
 
-/* TODO error checking
+//int	main(int argc, char **argv)
+//{
+//	t_tools	t;
+//
+//	check_args(argc);
+//	init_struct_tools(&t);
+//	create_two_tabs(&t, argv, argc);
+//	sort_tab(&t);
+//	add_indexes_to_list(&t);
+//	sort_all(&t);
+//	change_stack_c(&t);
+//	print_stack_c(&t);
+//	free_items(&t, argc);
+//	return (0);
+//}
+
+/*
    TODO checker
 */

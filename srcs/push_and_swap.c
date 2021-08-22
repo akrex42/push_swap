@@ -16,9 +16,9 @@ void	push_b(t_tools *t)
 		else
 			t->head_a = NULL;
 		free(tmp);
+		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+		t->c->content = "pb";
 	}
-	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-	t->c->content = "pb";
 }
 
 void	push_a(t_tools *t)
@@ -37,9 +37,9 @@ void	push_a(t_tools *t)
 		else
 			t->head_b = NULL;
 		free(tmp);
+		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+		t->c->content = "pa";
 	}
-	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-	t->c->content = "pa";
 }
 
 void	swap_a(t_tools *t)
@@ -51,9 +51,9 @@ void	swap_a(t_tools *t)
 		tmp = (t->tail_a)->prev->order;
 		(t->tail_a)->prev->order = (t->tail_a)->order;
 		(t->tail_a)->order = tmp;
+		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+		t->c->content = "sa";
 	}
-	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-	t->c->content = "sa";
 }
 
 void	swap_b(t_tools *t)
@@ -65,9 +65,9 @@ void	swap_b(t_tools *t)
 		tmp = (t->tail_b)->prev->order;
 		(t->tail_b)->prev->order = (t->tail_b)->order;
 		(t->tail_b)->order = tmp;
+		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+		t->c->content = "sb";
 	}
-	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-	t->c->content = "sb";
 }
 
 void	swap_ab(t_tools *t)
@@ -82,7 +82,7 @@ void	swap_ab(t_tools *t)
 		tmp = (t->tail_a)->prev->order;
 		(t->tail_a)->prev->order = (t->tail_a)->order;
 		(t->tail_a)->order = tmp;
+		t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
+		t->c->content = "ss";
 	}
-	t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
-	t->c->content = "ss";
 }

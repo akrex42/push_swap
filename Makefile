@@ -1,4 +1,4 @@
-NAME		= push_swap
+NAME		= checker
 
 SRCS_DIR	= ./srcs/
 
