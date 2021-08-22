@@ -88,7 +88,3 @@ void	check_args(int argc)
 //	free_items(&t, argc);
 //	return (0);
 //}
-
-/*
-   TODO checker
-*/

@@ -19,7 +19,7 @@ void	check_str(const char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i])))
+		if (!(ft_isdigit(str[i])) && str[i] != '-')
 		{
 			ft_putendl_fd("Error", 2);
 			exit (-1);
