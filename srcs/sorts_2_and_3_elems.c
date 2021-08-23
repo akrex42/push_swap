@@ -69,3 +69,31 @@ void	sort_stack_three_elems_b(t_tools *t)
 	t->b = t->head_b;
 	check_order_b(t);
 }
+
+void	check_for_five(t_tools *t)
+{
+	if ((t->tail_b->prev && t->tail_b->order < t->tail_b->prev->order)
+		|| (t->tail_b->prev == NULL))
+	{
+		swap_b(t);
+	}
+	if ((t->b->next->next && t->b->order > t->b->next->next->order)
+		|| (t->b->next->next && t->b->order == t->b->next->next->order - 1))
+	{
+		reverse_rotate_b(t);
+		if (t->tail_b->prev && t->tail_b->order < t->tail_b->prev->order)
+		{
+			swap_b(t);
+		}
+	}
+	else if (t->b->next->next && t->b->order < t->b->next->next->order
+		&& t->b->order > t->b->next->order)
+	{
+		rotate_b(t);
+		if (t->tail_b->prev && t->tail_b->order < t->tail_b->prev->order)
+		{
+			swap_b(t);
+		}
+		reverse_rotate_b(t);
+	}
+}

@@ -1,138 +1,68 @@
 #include "../includes/push_swap.h"
 
-# define BUFFER_SIZE 1
-
-static int		returned(char *p_na, char **rem)
+void	check_line(t_tools *t, char *line)
 {
-	if (p_na)
-		return (1);
+	if (!ft_strncmp(line, "sa", 3))
+		swap_a(t);
+	else if (!ft_strncmp(line, "sb", 3))
+		swap_b(t);
+	else if (!ft_strncmp(line, "ss", 3))
+		swap_ab(t);
+	else if (!ft_strncmp(line, "pa", 3))
+		push_a(t);
+	else if (!ft_strncmp(line, "pb", 3))
+		push_b(t);
+	else if (!ft_strncmp(line, "ra", 3))
+		rotate_a(t);
+	else if (!ft_strncmp(line, "rb", 3))
+		rotate_b(t);
+	else if (!ft_strncmp(line, "rr", 3))
+		rotate_ab(t);
+	else if (!ft_strncmp(line, "rra", 4))
+		reverse_rotate_a(t);
+	else if (!ft_strncmp(line, "rrb", 4))
+		reverse_rotate_b(t);
+	else if (!ft_strncmp(line, "rrr", 4))
+		reverse_rotate_ab(t);
 	else
+		ft_error(line);
+}
+
+void	main_cycle_checker(t_tools *t, char *line)
+{
+	int	res;
+
+	res = 0;
+	while (1)
 	{
-		free(*rem);
-		*rem = NULL;
-		return (0);
+		res = get_next_line(&line);
+		if (res == 2)
+			ft_error(line);
+		if (res == 0)
+		{
+			free(line);
+			break ;
+		}
+		check_line(t, line);
+		free(line);
 	}
 }
 
-static void		ft_free(char *tmp, char **rem)
+int	main(int argc, char **argv)
 {
-	free(tmp);
-	free(*rem);
-	*rem = NULL;
-}
+	char	*line;
+	t_tools	t;
 
-static char		*check_remainder(char **rem, char **line)
-{
-	char *p_na;
-	char *tmp;
-
-	p_na = NULL;
-	*line = ft_strdup("");
-	if (*rem != NULL)
-	{
-		if ((p_na = ft_strchr(*rem, '\n')) != NULL)
-		{
-			*p_na = '\0';
-			tmp = *line;
-			*line = ft_strjoin(*line, *rem);
-			free(tmp);
-			tmp = *rem;
-			*rem = ft_strdup(++p_na);
-			free(tmp);
-		}
-		else
-		{
-			tmp = *line;
-			*line = ft_strdup(*rem);
-			ft_free(tmp, rem);
-		}
-	}
-	return (p_na);
-}
-
-int				get_next_line(int fd, char **line)
-{
-	char		buf[BUFFER_SIZE + 1];
-	long		byte_read;
-	char		*p_n;
-	static char *rem;
-	char		*tmp;
-
-	if (BUFFER_SIZE <= 0 || !(line) || (read(fd, buf, 0) < 0))
-		return (-1);
-	p_n = check_remainder(&rem, line);
-	while (!p_n && (byte_read = read(fd, buf, BUFFER_SIZE)))
-	{
-		buf[byte_read] = '\0';
-		if ((p_n = ft_strchr(buf, '\n')))
-		{
-			*p_n = '\0';
-			rem = ft_strdup(++p_n);
-		}
-		tmp = *line;
-		if (!(*line = ft_strjoin(*line, buf)))
-			return (-1);
-		free(tmp);
-	}
-	return (returned(p_n, &rem));
-}
-
-void check_line(t_tools *t, char *line) {
-
-    if (!ft_strncmp(line, "sa", ft_strlen(line))) {
-        swap_a(t);
-    } else if (!ft_strncmp(line, "sb", ft_strlen(line))) {
-        swap_b(t);
-    } else if (!ft_strncmp(line, "ss", ft_strlen(line))) {
-        swap_ab(t);
-    } else if (!ft_strncmp(line, "pa", ft_strlen(line))) {
-        push_a(t);
-    } else if (!ft_strncmp(line, "pb", ft_strlen(line))) {
-        push_b(t);
-    } else if (!ft_strncmp(line, "ra", ft_strlen(line))) {
-        rotate_a(t);
-    } else if (!ft_strncmp(line, "rb", ft_strlen(line))) {
-        rotate_b(t);
-    } else if (!ft_strncmp(line, "rr", ft_strlen(line))) {
-        rotate_ab(t);
-    } else if (!ft_strncmp(line, "rra", ft_strlen(line))) {
-        reverse_rotate_a(t);
-    } else if (!ft_strncmp(line, "rrb", ft_strlen(line))) {
-        reverse_rotate_b(t);
-    } else if (!ft_strncmp(line, "rrr", ft_strlen(line))) {
-        reverse_rotate_ab(t);
-    } else {
-        ft_putendl_fd("Error", 1);
-        exit(-1);
-    }
-}
-
-int main(int argc, char **argv)
-{
-    char *line = NULL;
-    t_tools	t;
-
-    check_args(argc);
-    init_struct_tools(&t);
+	line = NULL;
+	check_args(argc);
+	init_struct_tools(&t);
 	create_two_tabs(&t, argv, argc);
 	sort_tab(&t);
 	add_indexes_to_list(&t);
-	while (1) {
-        if (get_next_line(STDIN_FILENO, &line) == 0)
-        {
-            check_line(&t, line);
-            break ;
-        }
-        check_line(&t, line);
-    }
+	main_cycle_checker(&t, line);
 	if (check_if_sorted_a(&t) == 0)
-	{
 		ft_putendl_fd("OK", 1);
-	}
 	else
 		ft_putendl_fd("KO", 1);
-	return (0);
-
-	/* TODO negative integers
-	   TODO Two CTRL-D */
+	free_items(&t, argc);
 }

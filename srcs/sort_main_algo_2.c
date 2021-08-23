@@ -69,3 +69,9 @@ void	check_tail_ab(t_tools *t, int len)
 	t->a = t->head_a;
 	t->b = t->head_b;
 }
+
+void	check_args(int argc)
+{
+	if (argc == 1)
+		exit (-1);
+}

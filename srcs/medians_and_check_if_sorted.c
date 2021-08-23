@@ -84,15 +84,7 @@ void	main_cycle_b(t_tools *t, int median, int len, int i)
 			t->head_b->flag = t->flag;
 			break ;
 		}
-		check_tail_ab(t, len);
-		i++;
-		t->b = t->head_b;
-		if (ft_lstsize(t->b) <= 3)
-		{
-			if (t->tail_b)
-				sort_stack_three_elems_b(t);
-			check_tail_ab(t, len);
-		}
+		i = checks_for_cycle_b(t, len, i);
 	}
 }
 

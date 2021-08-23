@@ -66,25 +66,16 @@ void	size_thousand(t_tools *t)
 
 void	size_five(t_tools *t)
 {
-	int	len;
-
-	len = ft_lstsize(t->a);
 	if (check_if_sorted_a(t) == 0)
 		return ;
 	sort_median_a(t);
+	if (ft_lstsize(t->a) <= 3)
+		sort_stack_three_elems(t);
 	t->b = t->head_b;
 	if (ft_lstsize(t->b) <= 3)
-	{
-		sort_stack_three_elems_b(t);
-		while (t->head_b)
-		{
-			check_tail_ab(t, len);
-			push_a(t);
-			check_tail_ab(t, len);
-		}
-	}
-	while (check_if_sorted_a(t) != 0)
-		check_tail_ab(t, len);
+		check_for_five(t);
+	while (t->head_b)
+		push_a(t);
 }
 
 void	sort_all(t_tools *t)

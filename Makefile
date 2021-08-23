@@ -1,14 +1,22 @@
-NAME		= checker
+NAME		= push_swap
+
+NAME_1		= checker
 
 SRCS_DIR	= ./srcs/
 
-SRCS		= $(wildcard $(SRCS_DIR)*.c)
+SRCS		= $(filter-out ./srcs/checker_main.c, $(wildcard $(SRCS_DIR)*.c))
 
-HEADERS		= ./includes/push_swap.h
+SRCS_1		= $(filter-out ./srcs/push_swap.c, $(wildcard $(SRCS_DIR)*.c))
 
-OBJS		= $(patsubst %.c,%.o,$(SRCS))
+OBJS		= $(filter-out ./srcs/checker_main.o, $(patsubst %.c,%.o,$(SRCS)))
+
+OBJS_1		= $(filter-out ./srcs/push_swap.o, $(patsubst %.c,%.o,$(SRCS_1)))
 
 DEPENDS		= $(patsubst %.c,%.d,$(SRCS))
+
+DEPENDS_1	= $(patsubst %.c,%.d,$(SRCS_1))
+
+HEADERS		= ./includes/push_swap.h
 
 CC			= gcc
 
@@ -22,9 +30,12 @@ LIBFTDIR	= ./libft/
 
 LIBFT		= $(LIBFTDIR)libft.a
 
-all: $(NAME) $(LIBFT)
+all: $(NAME) $(NAME_1) $(LIBFT)
 
 $(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(LDFLAGS) $^ -o $@
+
+$(NAME_1): $(OBJS_1) $(LIBFT)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 $(SRCS_DIR)%.o: $(SRCS_DIR)%.c $(LIBFT) Makefile
@@ -36,7 +47,7 @@ $(LIBFT):
 -include $(DEPENDS)
 
 clean:
-		$(RM) $(OBJS) $(DEPENDS)
+		$(RM) $(OBJS) $(OBJS_1) $(DEPENDS) $(DEPENDS_1)
 		make -C $(LIBFTDIR) clean
 
 fclean: clean

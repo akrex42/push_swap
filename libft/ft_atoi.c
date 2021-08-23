@@ -17,9 +17,15 @@ void	check_str(const char *str)
 	int	i;
 
 	i = 0;
+	if (!ft_strncmp(str, "", 1) || !ft_strncmp(str, "+", ft_strlen(str))
+		|| !ft_strncmp(str, "-", ft_strlen(str)))
+	{
+		ft_putendl_fd("Error", 2);
+		exit (-1);
+	}
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i])) && str[i] != '-')
+		if (!(ft_isdigit(str[i])) && str[i] != '-' && str[i] != '+')
 		{
 			ft_putendl_fd("Error", 2);
 			exit (-1);

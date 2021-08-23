@@ -90,5 +90,12 @@ void	still_to_sort(t_tools *t, int len);
 void	flag_zero_cycle(t_tools *t, int median);
 void	swap(t_tools *t, int index, int j, int min);
 void	check_args(int argc);
+void	flag_non_zero(t_tools *t, int len);
+void	flag_zero(t_tools *t, int len);
+void	check_for_five(t_tools *t);
+int		main_cycle_read(char *buf, char **line);
+int		checks_for_cycle_b(t_tools *t, int len, int i);
+void	ft_error(char *line);
+int		get_next_line(char **line);
 
 #endif
