@@ -36,34 +36,34 @@ void	main_cycle_a(t_tools *t, int median, int len, int i)
 			push_b(t);
 			t->tail_b->flag = t->flag;
 		}
-//		else if (median >= (t->head_a)->order && ft_lstsize(t->head_a) <= 4)
-//		{
-//			reverse_rotate_a(t);
-//			push_b(t);
-//			t->tail_b->flag = t->flag;
-//		}
-		else if (t->a->prev && t->a->prev->prev && median < (t->a)->prev->order && median < (t->a)->order && median < (t->a)->prev->prev->order && t->a->prev->prev->prev == NULL)
-		{
-			t->head_a->flag = 0;
-			t->head_a->next->flag = 0;
-			t->head_a->next->next->flag = 0;
-			break ;
-		}
-		else if (t->a->prev && median < (t->a)->prev->order && median < (t->a)->order && t->a->prev->prev == NULL)
-		{
-			t->head_a->flag = 0;
-			t->head_a->next->flag = 0;
-			break ;
-		}
 		else if (median < (t->a)->order && t->a->prev)
 		{
-			rotate_a(t);
-			t->head_a->flag = 0;
-		}
-		else if (median < (t->a)->order && t->a->prev == NULL)
-		{
-			t->head_a->flag = 0;
-			break ;
+			while (t->a)
+			{
+				if (t->a->order > median)
+				{
+					t->a = t->a->prev;
+					continue ;
+				}
+				else
+					break ;
+			}
+			if (t->a == NULL)
+			{
+				t->a = t->tail_a;
+				while (t->a)
+				{
+					t->a->flag = 0;
+					t->a = t->a->prev;
+				}
+				break ;
+			}
+			else
+			{
+				t->a = t->tail_a;
+				rotate_a(t);
+				t->head_a->flag = 0;
+			}
 		}
 		i++;
 		t->a = t->head_a;
@@ -106,33 +106,35 @@ void	main_cycle_b(t_tools *t, int median, int len, int i)
 			t->tail_a->flag = t->flag;
 			check_tail_ab(t, len);
 		}
-		else if (t->b && t->b->prev && t->b->prev->prev && median > (t->b)->prev->order
-			&& median > (t->b)->order && median > (t->b)->prev->prev->order && t->b->prev->prev->prev == NULL)
-		{
-			t->head_b->flag = t->flag;
-			t->head_b->next->flag = t->flag;
-			t->head_b->next->next->flag = t->flag;
-			check_tail_ab(t, len);
-			break ;
-		}
-		else if (t->b && t->b->prev && median > (t->b)->prev->order && median > (t->b)->order && t->b->prev->prev == NULL)
-		{
-			t->head_b->flag = t->flag;
-			t->head_b->next->flag = t->flag;
-			check_tail_ab(t, len);
-			break ;
-		}
 		else if (t->b && median > (t->b)->order && t->b->prev)
 		{
-			rotate_b(t);
-			t->head_b->flag = t->flag;
+			while (t->b)
+			{
+				if (t->b->order < median)
+				{
+					t->b = t->b->prev;
+					continue ;
+				}
+				else
+					break ;
+			}
+			if (t->b == NULL)
+			{
+				t->b = t->tail_b;
+				while (t->b)
+				{
+					t->b->flag = t->flag;
+					t->b = t->b->prev;
+				}
+				break ;
+			}
+			else
+			{
+				t->b = t->tail_b;
+				rotate_b(t);
+				t->head_b->flag = t->flag;
+			}
 			check_tail_ab(t, len);
-		}
-		else if (t->b && median > (t->b)->order && t->b->prev == NULL)
-		{
-			t->head_b->flag = t->flag;
-			check_tail_ab(t, len);
-			break ;
 		}
 		i = checks_for_cycle_b(t, len, i);
 	}

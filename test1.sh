@@ -52,9 +52,9 @@ i=0
 while (( $i <= 1000 ))
 do
   ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
+#  ./push_swap $ARG | wc -l
   ./push_swap $ARG | wc -l | awk '$1 > 699'
-  echo $ARG
+#  echo $ARG
   i=$(( i+1 ))
 done
 echo -e "${GREEN} MIDDLE VERSION CYCLE MY CHECKER${ENDCOLOR}"
@@ -62,9 +62,9 @@ i=0
 while (( $i <= 1000 ))
 do
   ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
+#  ./push_swap $ARG | wc -l
   ./push_swap $ARG | wc -l | awk '$1 > 699'
-  echo $ARG
+#  echo $ARG
   i=$(( i+1 ))
 done
 echo -e "${GREEN} ADVANCED VERSION CYCLE ${ENDCOLOR}"

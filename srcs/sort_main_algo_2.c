@@ -17,45 +17,47 @@ void	sort(t_tools *t, int len)
 void	flag_zero_cycle(t_tools *t, int median)
 {
 	t->a = t->tail_a;
-	while (t->tail_a->flag == t->flag)
+	while (t->a->flag == 0)
 	{
-		if (median >= (t->tail_a)->order)
+		t->a = t->tail_a;
+		if (median >= (t->a)->order)
 		{
 			push_b(t);
 			t->tail_b->flag = 0;
+			t->a = t->tail_a;
 		}
-		else if (median < (t->tail_a)->order && median < (t->tail_a)->prev->order && median < (t->tail_a)->prev->prev->order && median < (t->tail_a)->prev->prev->prev->order
-			&& (t->tail_a)->prev->prev->prev->prev->flag == 1000)
+		else if (median < (t->a)->order && t->a->prev)
 		{
-			t->tail_a->flag = 0;
-			t->tail_a->prev->flag = 0;
-			t->tail_a->prev->prev->flag = 0;
-			t->tail_a->prev->prev->prev->flag = 0;
-			break ;
+			t->a = t->tail_a;
+			while (t->a->flag != 1000)
+			{
+				if (t->a->order > median)
+				{
+					t->a = t->a->prev;
+					continue ;
+				}
+				else
+					break ;
+			}
+			if (t->a->flag == 1000)
+			{
+				t->a = t->tail_a;
+				while (t->a->flag != 1000)
+				{
+					t->a->flag = 0;
+					t->a = t->a->prev;
+				}
+				break ;
+			}
+			else
+			{
+				t->a = t->tail_a;
+				rotate_a(t);
+				t->head_a->flag = 0;
+			}
+			t->a = t->tail_a;
 		}
-		else if (median < (t->tail_a)->order && median < (t->tail_a)->prev->order && median < (t->tail_a)->prev->prev->order && (t->tail_a)->prev->prev->prev->flag == 1000)
-		{
-			t->tail_a->flag = 0;
-			t->tail_a->prev->flag = 0;
-			t->tail_a->prev->prev->flag = 0;
-			break ;
-		}
-		else if (median < (t->tail_a)->prev->order && median < (t->tail_a)->order && (t->tail_a)->prev->prev->flag == 1000)
-		{
-			t->tail_a->flag = 0;
-			t->tail_a->prev->flag = 0;
-			break ;
-		}
-		else if (median < (t->tail_a)->order && (t->tail_a)->prev->flag == 1000)
-		{
-			t->tail_a->flag = 0;
-			break ;
-		}
-		else if (median < (t->tail_a)->order)
-		{
-			rotate_a(t);
-			t->head_a->flag = 0;
-		}
+		t->a = t->tail_a;
 	}
 }
 
