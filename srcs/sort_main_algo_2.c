@@ -24,6 +24,33 @@ void	flag_zero_cycle(t_tools *t, int median)
 			push_b(t);
 			t->tail_b->flag = 0;
 		}
+		else if (median < (t->tail_a)->order && median < (t->tail_a)->prev->order && median < (t->tail_a)->prev->prev->order && median < (t->tail_a)->prev->prev->prev->order
+			&& (t->tail_a)->prev->prev->prev->prev->flag == 1000)
+		{
+			t->tail_a->flag = 0;
+			t->tail_a->prev->flag = 0;
+			t->tail_a->prev->prev->flag = 0;
+			t->tail_a->prev->prev->prev->flag = 0;
+			break ;
+		}
+		else if (median < (t->tail_a)->order && median < (t->tail_a)->prev->order && median < (t->tail_a)->prev->prev->order && (t->tail_a)->prev->prev->prev->flag == 1000)
+		{
+			t->tail_a->flag = 0;
+			t->tail_a->prev->flag = 0;
+			t->tail_a->prev->prev->flag = 0;
+			break ;
+		}
+		else if (median < (t->tail_a)->prev->order && median < (t->tail_a)->order && (t->tail_a)->prev->prev->flag == 1000)
+		{
+			t->tail_a->flag = 0;
+			t->tail_a->prev->flag = 0;
+			break ;
+		}
+		else if (median < (t->tail_a)->order && (t->tail_a)->prev->flag == 1000)
+		{
+			t->tail_a->flag = 0;
+			break ;
+		}
 		else if (median < (t->tail_a)->order)
 		{
 			rotate_a(t);
@@ -55,11 +82,7 @@ void	check_tail_ab(t_tools *t, int len)
 		&& ((check_if_sorted_a(t) != 0)
 			|| (check_if_sorted_a(t) == 0 && ft_lstsize(t->head_a) != len)))
 	{
-		if (t->tail_b && t->tail_b->prev
-			&& t->tail_b->prev->order < t->tail_b->order)
-			swap_ab(t);
-		else
-			swap_a(t);
+		swap_a(t);
 		rotate_a(t);
 		t->head_a->flag = 1000;
 		t->next++;

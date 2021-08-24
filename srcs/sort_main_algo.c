@@ -61,6 +61,7 @@ void	size_thousand(t_tools *t)
 	}
 	if (check_if_sorted_a(t) == 0 && ft_lstsize(t->head_a) == len)
 		return ;
+	check_tail_ab(t, len);
 	main_cycle(t, len);
 }
 

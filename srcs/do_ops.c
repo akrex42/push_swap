@@ -8,6 +8,8 @@ void	rotate_while_checking(t_tools *t, int len)
 			|| (check_if_sorted_a(t) == 0
 				&& ft_lstsize(t->head_a) != len)))
 	{
+		if (t->tail_b->prev && t->tail_b->prev->order == t->next)
+			swap_b(t);
 		rotate_a(t);
 		t->head_a->flag = 1000;
 		t->next++;
@@ -18,13 +20,17 @@ void	check_tail_b(t_tools *t, int len)
 {
 	if (t->tail_b)
 	{
+		if (t->tail_b->prev && t->tail_b->prev->order
+		== t->next && t->tail_a && t->tail_a->prev
+		&& t->tail_a->prev->order < t->tail_a->order)
+			rotate_while_checking(t, len);
 		while (t->tail_b && t->tail_b->order == t->next)
 		{
 			if (t->tail_b->prev && t->tail_b->prev->order
-				== t->next && t->tail_a && t->tail_a->prev
-				&& t->tail_a->prev->order < t->tail_a->order)
+			== t->next && t->tail_a && t->tail_a->prev
+			&& t->tail_a->prev->order < t->tail_a->order)
 				rotate_while_checking(t, len);
-			else if (t->tail_b->prev && t->tail_b->prev->order == t->next)
+			if (t->tail_b->prev && t->tail_b->prev->order == t->next)
 				swap_b(t);
 			push_a(t);
 			rotate_a(t);

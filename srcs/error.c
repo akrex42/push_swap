@@ -44,9 +44,9 @@ int	main_cycle_read(char *buf, char **line)
 		flag = 1;
 		count++;
 	}
-	if ((*line[0] == '\0' && buf[0] == '\n') || (save != '\n' && count != 0))
-		return (2);
 	free(buf);
+	if ((*line[0] == '\0' && save == '\n') || (save != '\n' && count != 0))
+		return (2);
 	if (flag == 1)
 		return (1);
 	return (0);
@@ -55,7 +55,7 @@ int	main_cycle_read(char *buf, char **line)
 void	ft_error(char *line)
 {
 	free(line);
-	ft_putendl_fd("Error", 1);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	exit(-1);
 }
 
