@@ -81,7 +81,7 @@ int	checks_for_cycle_b(t_tools *t, int len, int i)
 	if (ft_lstsize(t->b) <= 3)
 	{
 		if (t->tail_b)
-			sort_stack_three_elems_b(t);
+			check_for_five(t);
 		check_tail_ab(t, len);
 	}
 	return (i);

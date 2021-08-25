@@ -97,5 +97,6 @@ int		main_cycle_read(char *buf, char **line);
 int		checks_for_cycle_b(t_tools *t, int len, int i);
 void	ft_error(char *line);
 int		get_next_line(char **line);
+void	sort_median_b(t_tools *t);
 
 #endif

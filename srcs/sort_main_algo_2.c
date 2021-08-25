@@ -14,53 +14,6 @@ void	sort(t_tools *t, int len)
 	check_tail_ab(t, len);
 }
 
-void	flag_zero_cycle(t_tools *t, int median)
-{
-	t->a = t->tail_a;
-	while (t->a->flag == 0)
-	{
-		t->a = t->tail_a;
-		if (median >= (t->a)->order)
-		{
-			push_b(t);
-			t->tail_b->flag = 0;
-			t->a = t->tail_a;
-		}
-		else if (median < (t->a)->order && t->a->prev)
-		{
-			t->a = t->tail_a;
-			while (t->a->flag != 1000)
-			{
-				if (t->a->order > median)
-				{
-					t->a = t->a->prev;
-					continue ;
-				}
-				else
-					break ;
-			}
-			if (t->a->flag == 1000)
-			{
-				t->a = t->tail_a;
-				while (t->a->flag != 1000)
-				{
-					t->a->flag = 0;
-					t->a = t->a->prev;
-				}
-				break ;
-			}
-			else
-			{
-				t->a = t->tail_a;
-				rotate_a(t);
-				t->head_a->flag = 0;
-			}
-			t->a = t->tail_a;
-		}
-		t->a = t->tail_a;
-	}
-}
-
 void	swap(t_tools *t, int index, int j, int min)
 {
 	int	tmp;
@@ -90,7 +43,6 @@ void	check_tail_ab(t_tools *t, int len)
 		t->next++;
 	}
 	check_tail_b(t, len);
-	check_head_b(t);
 	t->a = t->head_a;
 	t->b = t->head_b;
 }

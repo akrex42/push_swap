@@ -12,6 +12,7 @@ void	rotate_a(t_tools *t)
 		tmp1 = t->tail_a;
 		lst = ft_lstadd_front(&(t->head_a), &(t->tail_a));
 		lst->order = t->tail_a->order;
+		lst->flag = t->tail_a->flag;
 		t->head_a = lst;
 		t->tail_a = t->tail_a->prev;
 		if (t->tail_a)
@@ -50,6 +51,7 @@ void	reverse_rotate_a(t_tools *t)
 		tmp1 = t->head_a;
 		lst = ft_lstadd_back(&(t->head_a), &(t->tail_a));
 		lst->order = (t->head_a)->order;
+		lst->flag = (t->head_a)->flag;
 		t->tail_a = lst;
 		t->head_a = (t->head_a)->next;
 		if (t->head_a)
@@ -75,6 +77,7 @@ void	reverse_rotate_b(t_tools *t)
 		tmp1 = t->head_b;
 		lst = ft_lstadd_back(&(t->head_b), &(t->tail_b));
 		lst->order = (t->head_b)->order;
+		lst->flag = (t->head_b)->flag;
 		t->tail_b = lst;
 		t->head_b = (t->head_b)->next;
 		if (t->head_b)

@@ -18,24 +18,20 @@ void	rotate_while_checking(t_tools *t, int len)
 
 void	check_tail_b(t_tools *t, int len)
 {
+	(void)len;
 	if (t->tail_b)
 	{
-		if (t->tail_b->prev && t->tail_b->prev->order
-		== t->next && t->tail_a && t->tail_a->prev
-		&& t->tail_a->prev->order < t->tail_a->order)
-			rotate_while_checking(t, len);
 		while (t->tail_b && t->tail_b->order == t->next)
 		{
-			if (t->tail_b->prev && t->tail_b->prev->order
-			== t->next && t->tail_a && t->tail_a->prev
-			&& t->tail_a->prev->order < t->tail_a->order)
-				rotate_while_checking(t, len);
-			if (t->tail_b->prev && t->tail_b->prev->order == t->next)
-				swap_b(t);
+//			if (t->tail_b->prev && t->tail_b->prev->order == t->next)
+//				swap_b(t);
 			push_a(t);
 			rotate_a(t);
 			t->head_a->flag = 1000;
 			t->next++;
+//			if (t->tail_a && t->tail_a->prev && t->tail_a->prev->order == t->tail_a->order - 1
+//				&& t->tail_b && t->tail_b->prev && t->tail_b->prev->order == t->tail_b->order + 1)
+//				swap_ab(t);
 		}
 	}
 }
@@ -52,6 +48,7 @@ void	rotate_b(t_tools *t)
 		tmp1 = t->tail_b;
 		lst = ft_lstadd_front(&(t->head_b), &(t->tail_b));
 		lst->order = (t->tail_b)->order;
+		lst->flag = (t->tail_b)->flag;
 		t->head_b = lst;
 		t->tail_b = (t->tail_b)->prev;
 		if (t->tail_b)
@@ -61,32 +58,6 @@ void	rotate_b(t_tools *t)
 		{
 			t->c = ft_lstadd_back(&(t->head_c), &(t->tail_c));
 			t->c->content = "rb";
-		}
-	}
-}
-
-void	check_head_b(t_tools *t)
-{
-	int	flag;
-
-	flag = 0;
-	if (t->head_b)
-	{
-		while (t->head_b && t->head_b->order == t->next)
-		{
-			if (t->head_b->next && t->head_b->next->order == t->next)
-			{
-				reverse_rotate_b(t);
-				flag = 1;
-			}
-			reverse_rotate_b(t);
-			push_a(t);
-			if (flag)
-				rotate_ab(t);
-			else
-				rotate_a(t);
-			t->head_a->flag = 1000;
-			t->next++;
 		}
 	}
 }

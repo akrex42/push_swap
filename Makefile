@@ -30,7 +30,7 @@ LIBFTDIR	= ./libft/
 
 LIBFT		= $(LIBFTDIR)libft.a
 
-all: $(NAME) $(NAME_1) $(LIBFT)
+all: $(NAME) $(LIBFT)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(LDFLAGS) $^ -o $@
@@ -54,5 +54,7 @@ fclean: clean
 		make -C $(LIBFTDIR) fclean
 
 re: fclean all
+
+bonus: $(NAME_1)
 
 .PHONY: all clean fclean re
