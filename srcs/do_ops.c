@@ -23,15 +23,10 @@ void	check_tail_b(t_tools *t, int len)
 	{
 		while (t->tail_b && t->tail_b->order == t->next)
 		{
-//			if (t->tail_b->prev && t->tail_b->prev->order == t->next)
-//				swap_b(t);
 			push_a(t);
 			rotate_a(t);
 			t->head_a->flag = 1000;
 			t->next++;
-//			if (t->tail_a && t->tail_a->prev && t->tail_a->prev->order == t->tail_a->order - 1
-//				&& t->tail_b && t->tail_b->prev && t->tail_b->prev->order == t->tail_b->order + 1)
-//				swap_ab(t);
 		}
 	}
 }
@@ -79,4 +74,26 @@ int	check_if_sorted_a(t_tools *t)
 	}
 	t->a = t->tail_a;
 	return (flag_cycle);
+}
+
+void	cycle_for_five(t_tools *t, int len, int median, int i)
+{
+	t->a = t->tail_a;
+	while (i < len && t->a)
+	{
+		t->a = t->tail_a;
+		if (median >= (t->a)->order)
+		{
+			push_b(t);
+			t->tail_b->flag = t->flag;
+		}
+		else if (median < (t->a)->order)
+		{
+			rotate_a(t);
+			t->a = t->tail_a;
+			t->head_a->flag = 0;
+		}
+		i++;
+		t->a = t->head_a;
+	}
 }

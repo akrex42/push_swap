@@ -34,8 +34,8 @@ i=0
 while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 12'
+#  ./push_swap $ARG | wc -l
+  ./push_swap $ARG | wc -l | awk '$1 > 12' >> test.txt
   i=$(( i+1 ))
 done
 echo -e "${GREEN} ANOTHER SIMPLE VERSION CYCLE MY CHECKER ${ENDCOLOR}"
@@ -43,52 +43,53 @@ i=0
 while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 12'
+#  ./push_swap $ARG | wc -l
+  ./push_swap $ARG | wc -l | awk '$1 > 12' >> test.txt
   i=$(( i+1 ))
 done
 echo -e "${GREEN} MIDDLE VERSION CYCLE ${ENDCOLOR}"
 i=0
-while (( $i <= 1000 ))
+while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
 #  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 699'
+#   echo $ARG >> test.txt
+  ./push_swap $ARG | wc -l | awk '$1 > 699' >> test.txt
 #  echo $ARG
   i=$(( i+1 ))
 done
 echo -e "${GREEN} MIDDLE VERSION CYCLE MY CHECKER${ENDCOLOR}"
 i=0
-while (( $i <= 1000 ))
+while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
 #  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 699'
-#  echo $ARG
+#   echo $ARG >> test.txt
+  ./push_swap $ARG | wc -l | awk '$1 > 699' >> test.txt
   i=$(( i+1 ))
 done
 echo -e "${GREEN} ADVANCED VERSION CYCLE ${ENDCOLOR}"
 i=0
-while (( $i <= 500 ))
+while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 5499'
+#  ./push_swap $ARG | wc -l
+  ./push_swap $ARG | wc -l | awk '$1 > 5499' >> test.txt
   i=$(( i+1 ))
 done
 echo -e "${GREEN} ADVANCED VERSION CYCLE MY CHECKER${ENDCOLOR}"
 i=0
-while (( $i <= 500 ))
+while (( $i <= 50 ))
 do
   ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker_Mac $ARG
-  ./push_swap $ARG | wc -l
-  ./push_swap $ARG | wc -l | awk '$1 > 5499'
+#  ./push_swap $ARG | wc -l
+  ./push_swap $ARG | wc -l | awk '$1 > 5499' >> test.txt
   i=$(( i+1 ))
 done
 echo -e "${RED} CHECKER ERROR MANAGEMENT ${ENDCOLOR}"
 echo -e './checker 4df' && ./checker 4df
 echo -e './checker 0 1 2 1' && ./checker 0 1 2 1
-echo -e './checker 0 1 2 3 4 5 6 7 8 90000000000' && ./checker 0 1 2 3 4 5 6 7 8 90000000000
+echo -e './checker 0 1 2 3 4 5 6 7 8 2147483648' && ./checker 0 1 2 3 4 5 6 7 8 2147483648
 echo -e './checker ' && ./checker
 echo -e './checker 1 2 3' && ./checker 1 2 3
 echo -e './checker 1 2 3' && ./checker 1 2 3

@@ -56,4 +56,3 @@ void	flag_zero_cycle(t_tools *t, int median)
 		t->a = t->tail_a;
 	}
 }
-
