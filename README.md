@@ -1,2 +1,2 @@
 # push_swap
-Algorythmic project in School 21
+Algorithmic project in School 21, consisting of sorting an array of ints on two stacks
